@@ -1,0 +1,170 @@
+.pay-head-description {
+  padding: 10px 20px 20px;
+}
+
+.pay-head-title {
+  color: #FA7564;
+  /* font-weight: 400; */
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.pay-head-text {
+  color: #3F576B;
+  font-size: 14px;
+  /* font-weight: 300; */
+  line-height: 22px;
+}
+
+swiper.swiper {
+  height: 520rpx;
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+
+swiper-item {
+  color: #B6C8DD;
+}
+
+.pay-item {
+  height: calc(100% - 60rpx);
+  padding: 40rpx 30px;
+  margin: 0 25px;
+  background: #325282;
+  border-radius: 10px;
+  box-shadow: 0 2px 24px 0 rgba(8,4,61,0.14);
+}
+
+.pay-item-group {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 60rpx;
+  overflow: hidden;
+}
+
+.pay-item-title {
+  float: left;
+}
+
+.degree-diamond {
+  float: left;
+  padding: 10rpx;
+  padding-top: 8px;
+}
+
+.degree-diamond text {
+  float: left;
+  width: 18px;
+  height: 15px;
+  margin-left: 10rpx;
+}
+
+.pay-item-price {
+  font-size: 36px;
+  padding: 10rpx 0;
+  color: #fff;
+}
+
+.pay-item-price text {
+  padding-left: 10px;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.pay-item-exp {
+  color: #a8b9c7;
+  line-height: 20px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.pay-content {
+  width: 100%;
+  padding: 45rpx 60rpx 0;
+  color: #bbbbbb;
+  background: #fff;
+  border-top: 1rpx solid rgb(233, 232, 232);
+}
+
+.pay-content-list {
+  position: relative;
+  width: 100%;
+  padding-bottom: 4px;
+  color: #3F576B;
+  font-size: 13px;
+}
+
+.pay-more:after {
+  content: " ";
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-width: 1px 1px 0 0;
+  border-color: rgb(193, 193, 197);
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 0px;
+}
+
+.pay-content-label {
+  display: inline-block;
+  width: 120rpx;
+  /* font-weight: 300; */
+}
+
+.pay-content-text {
+  display: inline-block;
+  width: calc(100% - 120rpx);
+  /* font-weight: 300; */
+}
+
+.pay-btn-box {
+  padding: 30rpx 0 50rpx;
+}
+
+.pay-btn-box button.weui-btn {
+  font-size: 16px;
+}
+
+.contract-radio .weui-cell__ft {
+  position: absolute;
+  left: 0px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #FA7564;
+  padding: 0;
+}
+
+.contract-radio .weui-cell__ft.is-checked {
+  background: #FA7564;
+}
+
+.contract-radio label {
+  height: 25px;
+  padding: 0;
+}
+
+.contract-radio .weui-cell__bd {
+  margin-left: 35px;
+  color: #FA7564;
+}
+
+.contract-radio icon {
+  position:absolute;
+  left: 1px;
+  top: 1px;
+  width: 11px;
+  height: 6px;
+  margin: 0 auto;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform:rotate(-45deg);
+  -ms-transform:rotate(-45deg); 
+  -moz-transform:rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+  -o-transform:rotate(-45deg);
+}

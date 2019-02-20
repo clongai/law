@@ -1,0 +1,135 @@
+/* pages/orderDetail/orderDetail.wxss */
+
+.list-detail-page {
+  font-size: 14px;
+  background: #fff;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.list-detail-inner {
+  padding: 0 15px 0 0;
+}
+
+.order-detail-top {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  background-image: linear-gradient(-46deg, #00F8F6 0%, #4B94E1 44%, #173BB4 90%);
+  box-shadow: 7px 22px 30px -25px rgba(22,43,68,0.28);
+  color: #fff;
+  padding-left: 15px;
+}
+
+.order-status-img {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 67px;
+  height: 67px;
+}
+
+.order-status-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.order-status {
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.order-text {
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.order-content {
+  padding: 10px 15px 0 0;
+  background: #fff;
+}
+
+
+
+input.weui-input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: inherit;
+  height: 20px;
+  line-height: 20px;
+  min-height: 20px;
+  float: left;
+}
+
+.weui-more, .weui-more-multi, .picker, .weui-collapse {
+  height: 20px;
+}
+
+.weui-more::after, .weui-more-multi::after {
+  content: " ";
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 10px;
+}
+
+.weui-uploader__files {
+  width: 100%;
+}
+
+.uploader-text {
+  float: left;
+  font-size: 14px;
+}
+
+.uploader-icon {
+  float: left;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.uploader-icon:before,
+.uploader-icon:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #d9d9d9;
+}
+
+.uploader-icon:before {
+  width: 2px;
+  height: 20px;
+}
+
+.uploader-icon:after {
+  width: 20px;
+  height: 2px;
+}
+
+.button-sp-area {
+  padding: 15px 0 50px 15px;
+}
+
+.weui-cell_telappo{
+  line-height:20px;
+  width:100%
+}
+
+.weui-label{
+width:100%;
+}

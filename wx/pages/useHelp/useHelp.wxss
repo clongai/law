@@ -1,0 +1,265 @@
+/* pages/mine/mine.wxss */
+.mine-info {
+  height: 100%;
+}
+
+.userinfo {
+  position: absolute;
+  top: 20rpx;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 20px);
+  height: 968rpx;
+}
+
+.userinfo-img {
+  float: left;
+  padding: 20rpx;
+}
+
+.userinfo-msg {
+  display: inline-block;
+  float: left;
+}
+
+.userinfo-code {
+  display: inline-block;
+  float: right;
+}
+
+image.userinfo-avatar {
+  width: 158rpx;
+  height: 158rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname, .userinfo-nickid {
+  color: #fff;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userinfo-nickname {
+  padding-top: 50rpx;
+  font-size: 13px;
+}
+
+.userinfo-code {
+  font-size: 10px;
+}
+
+.page-top-box {
+  width: 100%;
+  height: 400rpx;
+}
+
+.page-top-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.userinfo-header {
+  position: relative;
+  width: calc(100% - 30rpx);
+  padding-left: 30rpx;
+  z-index: 5;
+}
+
+.userinfo-content {
+  position: absolute;
+  top: 152rpx;
+  width: calc(100% - 40px);
+  height: 800rpx;
+  padding: 15px 20px;
+  box-shadow: 0px 0px 15px rgb(209, 208, 208);
+  background: #fff;
+  border-radius: 30rpx;
+}
+
+button.userinfo-button {
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  border:none;
+}
+
+button.userinfo-button image.userinfo-avatar {
+  margin: 0;
+}
+
+.userinfo-msg {
+  width: calc(100% - 189px);
+  padding-left: 20rpx
+}
+
+.userinfo-code {
+  width: 90px;
+  height: 138rpx;
+  text-align:right;
+  padding-right:30px;
+  padding-top: 10px;
+}
+
+view.userinfo-qr-box {
+  display:inline-block;
+  width:60px;
+  height:60px;
+  text-align: center;
+}
+
+.userinfo-qr-box image {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+.userinfo-qr-text {
+  font-size:13px;
+  color:#fff;
+  font-weight:300;
+}
+
+.userinfo-code::after {
+  content: " ";
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-width: 1px 1px 0 0;
+  border-color: #fff;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 25%;
+  margin-top: -4px;
+  right: 20px;
+}
+
+.userinfo-qcode {
+  width: calc(100% - 10rpx);
+}
+
+.userinfo-list-box {
+  padding-top: 10px;
+}
+
+.userinfo-list {
+  height: 52px;
+  border-bottom: 1rpx solid rgb(218, 218, 218);
+  position: relative;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.userinfo-base-img {
+  float: left;
+  width: 42px;
+  height: 22px;
+  padding-right: 20px;
+}
+
+.userinfo-base-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.userInfo-base-text {
+  position: relative;
+  float: left;
+  width: calc(100% - 42px);
+  line-height: 22px;
+}
+
+.userInfo-base-text::after {
+  content: " ";
+    display: inline-block;
+    height: 9px;
+    width: 9px;
+    border-width: 1px 1px 0 0;
+    border-color: rgb(218, 218, 218);
+    border-style: solid;
+    -webkit-transform: matrix(.71, .71, -.71, .71, 0, 0);
+    transform: matrix(.71, .71, -.71, .71, 0, 0);
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 10px;
+}
+
+.userInfo-base-text button{
+  border: none;
+  text-align: left;
+}
+
+
+.relation-page{
+
+}
+
+.relation-page-top{
+   border-bottom: 1rpx solid rgb(218, 218, 218);
+   background: #fff;
+   height: 45px;
+  border-top:  1rpx solid rgb(218, 218, 218);
+}
+
+.relation-page-top .leftText{
+  float: left;
+  text-align:center;
+  line-height:45px;
+  padding-left:15px;
+}
+
+.relation-page-top .rightText{
+  float: left;
+  text-align:center;
+  line-height:45px;
+  padding-left:20px;
+
+}
+
+.relation-page-center{
+   height: 340px;
+}
+
+.relation-page-center .leftText{
+  float: left;
+  padding-left:15px;
+  width: 100%;
+}
+
+
+
+.relation-page-below{
+   border-bottom: 1rpx solid rgb(218, 218, 218);
+   background: #fff;
+   height: 45px;
+}
+
+.relation-page-below .leftText{
+  color: #191919;
+float: left;
+padding-left:15px;
+text-align:center;
+  line-height:45px;
+  
+}
+
+.relation-page-below .rightText{
+float: right;
+padding-right: 20px;
+text-align:center;
+  line-height:45px;
+}
+
+.userHelpImg{
+  width: 100%;
+  height: 438px;
+}

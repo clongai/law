@@ -1,0 +1,267 @@
+/* pages/chooseType/chooseType.wxss */
+.choose-type {
+  height: 100%;
+}
+
+.page-top-box {
+  position: relative;
+  width:100%;
+  height:400rpx;
+}
+
+.page-top-text {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  padding-left: 30px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.loader-default {
+  font-weight: 200;
+}
+
+.loader-text {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+.page-top-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.choose-type-content {
+  position:absolute;
+  top:60px;
+  left:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:calc(100% - 20px);
+  height:968rpx;
+}
+
+.choose-type-con {
+  position: absolute;
+  top: 122rpx;
+  width: calc(100% - 40px);
+  height: 800rpx;
+  padding: 20rpx 0;
+  box-shadow: 0px 0px 15px #aaa;
+  background: #fff;
+  border-radius: 30rpx;
+}
+
+.manual-load, .camera-load {
+  width: 100%;
+  height: calc(50% - 1rpx);
+}
+
+.border-line {
+  width: calc(100% - 40px);
+  height: 0;
+  border-bottom: 1rpx solid rgb(211, 211, 211);
+  margin: 0 auto;
+}
+
+.type-bg {
+  float: left;
+  width: 250rpx;
+  height: calc(100% - 60rpx);
+}
+
+.type-bg image {
+  width: 100%;
+  height: 100%;
+}
+
+.type-text-box {
+  position: relative;
+  float: left;
+  width: calc(100% - 250rpx);
+  height: calc(100% - 60rpx);
+  padding: 40rpx 40rpx 0 20rpx;
+  text-align: center;
+}
+
+.type-text0 {
+  width: 280rpx;
+  font-size: 24px;
+  padding-bottom: 10rpx;
+}
+
+.type-text1 {
+  width: 280rpx;
+  font-weight: 200;
+  font-size: 14px;
+  color: #818181;
+}
+
+.type-btn-box {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.type-btn-box button {
+  height: 35px;
+  width: 280rpx;
+  border-radius: 20px;
+  border: none;
+  line-height: 35px;
+  color: #fff;
+  background-image: linear-gradient(-134deg, #75DDF5 0%, #43BBE9 100%);
+  box-shadow: 3px 13px 11px -11px rgba(66,186,233,0.59);
+}
+
+
+
+
+.btn { 
+  width: 80%;  
+  padding: 20rpx 0;  
+  border-radius: 10rpx;  
+  text-align: center;  
+  margin: 40rpx 10%;  
+  background: #000;  
+  color: #fff;  
+} 
+   
+/*mask*/ 
+.drawer_screen { 
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  background: #000;  
+  opacity: 0.5;  
+  overflow: hidden;  
+} 
+   
+/*content*/ 
+.drawer_box { 
+  width: 650rpx;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 50%;  
+  left: 0;  
+  z-index: 1001;  
+  background: #fff;  
+  margin: -150px 50rpx 0 50rpx;  
+  border-radius: 20px; 
+} 
+   
+.drawer_title{ 
+  padding:15px;  
+  font: 20px "microsoft yahei";  
+  text-align: left;  
+  display: block;
+} 
+.drawer_content { 
+  height: 110px;  
+} 
+   
+.btn_ok{ 
+  padding: 10px;  
+  text-align: center;  
+  /* border-top: 1px solid #E8E8EA; */
+  border-width: 100px;
+} 
+
+.btn_ok button {
+  height: 35px;
+  width: 280rpx;
+  border-radius: 20px;
+  border: none;
+  line-height: 35px;
+  color: #fff;
+  background-image: linear-gradient(-134deg, #75DDF5 0%, #43BBE9 100%);
+  box-shadow: 3px 13px 11px -11px rgba(66,186,233,0.59);
+}
+   
+.top{ 
+    padding-top:8px;  
+} 
+.bottom { 
+    padding-bottom:8px;  
+} 
+.title { 
+    height: 30px;  
+    line-height: 30px;  
+    width: 160rpx;  
+    text-align: center;  
+    display: inline-block;  
+    font: 300 28rpx/30px "microsoft yahei"; 
+    margin-left:20rpx;
+    font-size: 14px;
+} 
+   
+.input_base {   
+    padding-left: 10rpx;  
+    margin-right: 50rpx;  
+    margin-left:50rpx;
+    height: 40px;  
+    line-height: 40px; 
+    font-size: 18px;
+     color: #CBC8D9;
+} 
+
+.input_h60{ 
+    height: 60px;  
+} 
+.input_view{ 
+    font: 12px "microsoft yahei";  
+    background: #fff;  
+    color:#000;  
+    line-height: 30px;  
+} 
+   
+input { 
+    font: 12px "microsoft yahei";  
+    background: #fff;  
+    color:#000 ;  
+} 
+radio{ 
+    margin-right: 20px;  
+} 
+.grid { display: -webkit-box; display: box; } 
+.col-0 {-webkit-box-flex:0;box-flex:0;} 
+.col-1 {-webkit-box-flex:1;box-flex:1;} 
+.fl { float: left;} 
+.fr { float: right;} 
+
+.title-text{
+  width: 20%;
+}
+
+.title-img{
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-top: -25px;
+}
+
+.line-show{
+   border-top: 1px solid #E8E8EA;
+   width: 85%;
+   margin: 0 auto;
+}
+
+
+.bg_mb{
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.7;
+  opacity: 0.70;
+  filter: alpha(opacity=70);
+}

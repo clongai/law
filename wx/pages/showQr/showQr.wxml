@@ -1,0 +1,42 @@
+<view class="mine-info">
+  <view class="page-top-box">
+    <image src="../../images/mine/wdbg.png"></image>
+  </view>
+  <view class="userinfo">
+    <view class="userinfo-header">
+      <view class="userinfo-img" wx:if="{{!userInfo && canIUse}}">
+        <image class="userinfo-avatar" src="../../images/tiyu.png" mode="cover">
+        </image>
+      </view>
+      <block wx:else class="clearfix">
+        <view class="userinfo-img">
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </view>
+        <view class="userinfo-msg">
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+          <!-- <text class="userinfo-nickid">ID:</text> -->
+        </view>
+      </block>
+    </view>
+    <view class="userinfo-content">
+      <view wx:if="{{qCode != 'noregistry'}}" class="qr-warn-info">请扫描下方二维码</view>
+      <view wx:else class="qr-warn-info">您尚未注册成为普法宣传员</view>
+      <view class="qr-image">
+        <image wx:if="{{qCode != 'noregistry'}}" src="data:image/jpeg;base64,{{qCode}}"></image>
+      </view>
+      <!-- <view class="qr-recommend">
+        <view class="qr-recommend-info">
+          <view class="qr-flex qr-laywer-info">
+            <view class="qr-laywer-name">约翰尼</view>
+            <view class="qr-laywer-phone">13811111111</view>
+          </view>
+          <view class="qr-flex qr-laywer">
+            <view class="qr-laywer-name">推荐码</view>
+            <view class="qr-laywer-phone">DSHURYWOINJ</view>
+            <view class="qr-copy">复制</view>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+</view>

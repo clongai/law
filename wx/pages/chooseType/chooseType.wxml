@@ -1,0 +1,63 @@
+<view class="choose-type">
+  <view class="page-top-box">
+    <image src="../../images/mine/wdbg.png"></image>
+    <view class="page-top-text">
+      <view class="loader-default">请选择</view>
+      <view class="loader-text">您的录入方式</view>
+    </view> 
+  </view>
+  <view class="choose-type-content">
+    <view class="choose-type-con">
+      <view class="manual-load clearfix">
+        <view class="type-bg">
+          <image src="../../images/detail/sdsr.png"></image>
+        </view>
+        <view class="type-text-box">
+          <view class="type-text0">手动输入</view>
+          <view class="type-text1">需动态填写表单完成信息录入</view>
+          <view class="type-btn-box">
+            <button bindtap="turnToManual">下一步</button>
+          </view>
+        </view>
+      </view>
+      <view class="border-line"></view>
+      <view class="camera-load">
+        <view class="type-bg">
+          <image src="../../images/detail/pzsr.png"></image>
+        </view>
+        <view class="type-text-box">
+          <view class="type-text0">拍照解析</view>
+          <view class="type-text1">只需将文字版状子拍照上传</view>
+          <view class="type-btn-box">
+            <button>下一步</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--使用animation属性指定需要执行的动画-->  
+<view class="bg_mb" bindtap='hideview' style='display:{{bg_mb_display}}' ></view>
+<view animation="{{animationData}}"  class="drawer_box" wx:if="{{showModalStatus}}"> 
+   
+  <!--drawer content-->  
+  <view class="drawer_title">
+  <view class='title-text'>登录</view>
+  <image class="title-img"  bindtap="powerDrawer" data-statu="close" src="../../images/chahao.png" mode=""></image>
+  </view> 
+  <view class="drawer_content"> 
+    <view class="top grid"> 
+      <label class="title col-0">手机号</label> 
+    </view> 
+    <view class="top grid"> 
+    <input class="input_base col-1" name="rName" placeholder-style='color:#CBC8D9;' placeholder='请输入手机号' value="" bindinput="inputEvent" ></input>
+    </view> 
+    <view class="line-show"></view> 
+  </view> 
+  <!-- <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>  -->
+  
+  <view class="btn_ok">
+      <button bindtap="powerDrawer" data-statu="close" data-sure="true">确定</button>
+  </view> 
+</view>

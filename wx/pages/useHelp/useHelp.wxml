@@ -1,0 +1,31 @@
+<view class="relation-page">
+ <view class="relation-page-top">
+          <view class="leftText">平台简介</view>
+          <view class="rightText"></view>
+  </view>
+  <view class="relation-page-center">
+          <view class="leftText">
+        <text decode="{{true}}">
+        1、	写状子
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;写状子，其实就是写案件简述，如果当事人连自己的案件都叙述不清楚，司法部门必然不会受理，清莲律盟平台通过技术引导，引导当事人将案件基本叙述清楚，通过人工智能技术，形成案件简述，并帮助当事人分析案情，把握案件进展及方向，必要时可接受当事人委托代理。</text>
+       <text decode="{{true}}"> 
+       2、	上法院
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据各省市区县当地公检法的情况，形成流程化、系统化服务。通过写状子的简述，形成法院认可的诉状，并帮助当事人梳理去法院递交的材料清单，使当事人到法院可以顺利通过，使法院可以快速受理案件。</text>
+        <text decode="{{true}}">
+        3、	普法宣传
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;响应国家普法号召，通过微信转发的形式使更多的群众参与到普法工作中去，平台根据案件的收益，拨出一部分利润作为广大群众普法宣传的奖励，以奖金的形式下发到其微信账户中，使广大群众更有动力。</text>
+
+
+          </view>
+  </view>
+   <!-- <block >
+       <view class="relation-page-below">
+          <view class="leftText">使用流程</view>
+          <view class="rightText"></view>
+        </view>
+        <image class="userHelpImg" src="../../images/useHelp.png" mode="aspectFill">
+</image>
+   </block>  -->
+   
+   
+</view>

@@ -1,0 +1,20 @@
+<view class="relation-page">
+ <view class="relation-page-head">
+          <view class="leftText">头像</view>
+          <view class="rightText">
+            
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+         
+          </view>
+  </view>
+  <view class="relation-page-top">
+          <view class="leftText">昵称</view>
+          <view class="rightText">{{userInfo.nickName}}</view>
+  </view>
+  <view class="relation-page-top">
+          <view class="leftText">账号</view>
+          <view class="rightText">{{openId}}</view>
+  </view>
+  
+   
+</view>

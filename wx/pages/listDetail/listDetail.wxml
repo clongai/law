@@ -1,0 +1,164 @@
+<view class="weui-gallery" id="gallery" wx:if="{{gallery}}" bindtap="previewCancel">
+  <view class="weui-gallery__img" id="galleryImg" style="background-image:url({{currentFile}})"></view>
+  <!-- <image class="weui-gallery__img" id="galleryImg" src="{{currentFile}}"></image> -->
+  <view class="weui-gallery__opr">
+    <view class="weui-gallery__del" bindtap="previewCancel">
+      <icon type="cancel" class="weui-icon-cancel"></icon>
+    </view>
+  </view>
+</view>
+<view class="list-detail-page">
+  <view class="list-detail-inner">
+    <view class="weui-cells weui-cells-first">
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">开始时间</label>
+        </view>
+        <view class="weui-cell__bd">
+          <picker class="weui-btn weui-more" mode="date" value="{{startTime}}" bindchange="bindDateChange" data-key="startTime">
+            <input class="weui-input" value="{{startTime}}" disabled type="date" placeholder="请选择时间" />
+          </picker>
+        </view>
+      </view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">结束时间</label>
+        </view>
+        <view class="weui-cell__bd date-special">
+          <radio-group bindchange="radioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:for-item="item" wx:for-index="idx">
+              <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+              <view class="weui-cell__ft weui-cell__ft_in-radio">
+                <view class="weui-icon-radio" wx:if="{{item.checked}}"></view>
+                <!-- <icon class="weui-icon-radio" wx:if="{{item.checked}}" type="success_no_circle" size="14"></icon> -->
+              </view>
+              <view class="weui-cell__bd">
+                <view wx:if="{{item.value === 0}}">{{item.name}}</view>
+                <picker wx:if="{{item.value === 1}}" class="weui-btn weui-more" mode="date" start="{{startTime}}" value="{{endTime}}" end="{{currentDate}}" bindchange="bindDateChange" data-key="endTime">
+                <input class="weui-input" value="{{endTime}}" disabled type="date" placeholder="请选择时间" />
+                </picker>
+              </view>
+            </label>
+          </radio-group>
+          <!-- <picker class="weui-btn weui-more" mode="date" start="{{startTime}}" value="{{endTime}}" end="{{currentDate}}" bindchange="bindDateChange" data-key="endTime">
+            <input class="weui-input" value="{{endTime}}" disabled type="date" placeholder="请选择时间" />
+            </picker> -->
+          <!-- <picker class="weui-btn weui-more" mode="date" start="{{startTime}}" value="{{endTime}}" end="{{currentDate}}" bindchange="bindDateChange" data-key="endTime">
+            <input class="weui-input" value="{{endTime}}" disabled type="date" placeholder="请选择时间" />
+          </picker> -->
+        </view>
+      </view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">地点</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{place}}" type="text" placeholder="请输入地点" bindinput="inputEvent" data-key="place" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cell is-required">
+      <view class="weui-cell__hd">
+          <label class="weui-label">当事人</label>
+        </view>
+        <view class="weui-cell__bd weui-more" data-type="1" bindtap="goPerson">
+          <text wx:for="{{person1}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">{{(idx !== 0 ? ' / ' : '')+item.personName}}</text>
+        </view>
+    </view>
+    <view class="weui-cell is-required">
+      <view class="weui-cell__hd">
+          <label class="weui-label">对方当事人</label>
+        </view>
+        <view class="weui-cell__bd weui-more" data-type="2" bindtap="goPerson">
+          <text wx:for="{{person2}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">{{(idx !== 0 ? ' / ' : '')+item.personName}}</text>
+        </view>
+    </view>
+    <view class="weui-cell is-required">
+      <view class="weui-cell__hd">
+          <label class="weui-label">关系人</label>
+        </view>
+        <view class="weui-cell__bd weui-more" data-type="3" bindtap="goPerson">
+          <text wx:for="{{person3}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">{{(idx !== 0 ? ' / ' : '')+item.personName}}</text>
+        </view>
+    </view>
+    <view class="weui-cells">
+      <view class="weui-cell weui-textarea-outer weui-textarea-middle is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">案件详情</label>
+        </view>
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" rows="5" placeholder="请输入案件详情" bindinput="inputEvent" data-key="happen" maxlength='0' value="{{happen}}"></textarea>
+        </view>
+      </view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">涉及财物</label>
+        </view>
+        <view class="weui-cell__bd weui-more">
+          <picker class="weui-more" bindchange="bindPickerChange" value="{{involvingMoney}}" range="{{array}}">
+            <view class="picker">
+              {{array[involvingMoney]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view wx:if="{{involvingMoney==0}}" class="weui-cell weui-textarea-outer weui-textarea-middle is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">涉及财物</label>
+        </view>
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" rows="5" placeholder="分别列举本案中涉及到的财产和物品明细" bindinput="inputEvent" maxlength='0' data-key="possessions" value="{{possessions}}"></textarea>
+        </view>
+      </view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">诉求</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" value="{{appeal}}" type="text" placeholder="请输入诉求" bindinput="inputEvent" data-key="appeal" />
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <label class="weui-label">照片</label>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="">
+              <block wx:for="{{photo}}" wx:key="*this">
+                <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                </view>
+              </block>
+              <view class="weui-uploader__input-box">
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <label class="weui-label">视频</label>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="">
+              <block wx:for="{{video}}" wx:key="*this">
+                <view class="weui-uploader__file" id="{{item}}">
+                  <video class="weui-uploader__img" src="{{item}}" />
+                </view>
+              </block>
+              <view class="weui-uploader__input-box">
+                <view class="weui-uploader__input" bindtap="chooseVideo"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="button-sp-area">
+      <button class="weui-btn middle-btn" size="middle" bindtap="submit">提交</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,77 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="page-top-box">
+    <image src='../../images/index/sybanner.png'></image>
+  </view>
+  <swiper wx:if="{{false}}" class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" current="1" indicator-color="#fff" indicator-active-color="red" circular="true">  
+      <block wx:for="{{movies}}" wx:for-index="index" wx:key="index">  
+        <swiper-item>  
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>  
+        </swiper-item>  
+      </block>  
+    </swiper>
+  <view class="page-search-box">
+    <view class="weui-search-bar" wx:if="{{false}}">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="12"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="12"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      <!-- <view class="search-filter-box">
+							<view class="iconfont icon-shaixuan"></view>
+						</view> -->
+    </view>
+    <view class="weui-cells searchbar-refer" wx:if="{{inputVal.length > 0}}">
+      <navigator wx:for="{{searchList}}" wx:for-item="itemList" wx:url="{{itemList.path}}" class="weui-cell" hover-class="weui-cell_active" wx:key="{{itemList.value}}">
+        <view class="weui-cell__bd">
+          <view>{{itemList.text}}</view>
+        </view>
+      </navigator>
+    </view>
+    <view class="weui-cells searchbar-result">
+      <navigator wx:for="{{searchResult}}" wx:for-item="item" url="{{urlList[item.step]+item.orderId + '&status=' + item.status}}" class="weui-cell" hover-class="weui-cell_active" wx:key="{{item.orderId}}">
+        <view class="result-card">
+          <view class="result-card-top">
+            <text>ID </text>
+            <text class="result-card-id">{{item.orderId}}</text>
+          </view>
+          <view class="result-card-name">
+            <view>{{item.prosecutorName}}</view>
+            <view class="result-card-status {{item.status}}">{{map[item.status]}}</view>
+          </view>
+          <view class="result-card-appeal">
+            <text>诉求：</text>
+            <text>{{item.appeal}}</text>
+          </view>
+          <view class="result-card-place">
+            <view class="result-card-place-icon">
+              <image src="../../images/index/loc.png"></image>
+            </view>
+            <view class="result-card-place-text">{{item.place}}</view>
+          </view>
+          <view class="result-card-place">
+            <view class="result-card-place-icon">
+              <image src="../../images/index/time.png"></image>
+            </view>
+            <view class="result-card-place-text">{{item.doneDate}}</view>
+          </view>
+          <view class="pay-btn-box" wx:if="{{item.step === 0}}">
+            <button class="weui-btn">付款</button>
+          </view>
+           <view class="pay-btn-box" wx:if="{{item.step === 11}}">
+            <button class="weui-btn">预约电话沟通时间</button>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

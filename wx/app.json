@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/chooseType/chooseType",
+    "pages/listDetail/listDetail",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mine/mine",
+    "pages/userinfo/userinfo",
+    "pages/orderDetail/orderDetail",
+    "pages/showQr/showQr",
+    "pages/person/person",
+    "pages/scanCode/scanCode",
+    "pages/payOrderDetail/payOrderDetail",
+    "pages/payedOrderDetail/payedOrderDetail",
+    "pages/myRelation/myRelation",
+    "pages/telAppointment/telAppointment",
+    "pages/useHelp/useHelp",
+    "pages/chat/chat",
+    "pages/relationMe/relationMe",
+    "pages/ownInfo/ownInfo",
+    "pages/loginPop/loginPop"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "当事人",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "borderStyle": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/chooseType/chooseType",
+        "text": "写状子",
+        "iconPath": "images/index/bot2a.png",
+        "selectedIconPath": "images/index/bot2.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "当事人",
+        "iconPath": "./images/index/bot1a.png",
+        "selectedIconPath": "./images/index/bot1.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/index/bot3a.png",
+        "selectedIconPath": "images/index/bot3.png"
+      }
+    ]
+  }
+}

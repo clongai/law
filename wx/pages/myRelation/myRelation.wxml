@@ -1,0 +1,19 @@
+<view class="relation-page">
+ <!-- <view class="relation-page-top">
+          <view class="leftText">上级</view>
+          <view class="rightText">{{parentData.promoterName}}</view>
+  </view> -->
+  <view class="relation-page-center">
+          <view class="leftText">共{{relationDataCount+1}}位朋友</view>
+  </view>
+  <view class="relation-page-below">
+          <view class="leftText">{{parentData.promoterName?parentData.promoterName:''}}</view>
+          <view class="rightText">{{parentData.promoterTel?parentData.promoterTel:parentData.openId}}</view>
+        </view>
+   <block wx:for="{{relationData}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+       <view class="relation-page-below">
+          <view class="leftText">{{item.promoterName?item.promoterName:''}}</view>
+          <view class="rightText">{{item.promoterTel?item.promoterTel:item.openId}}</view>
+        </view>
+   </block>
+</view>

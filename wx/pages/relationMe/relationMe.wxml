@@ -1,0 +1,29 @@
+<view class="relation-page">
+ <view class="relation-page-top">
+         <image class="urelationmeImg" src="../../images/relationme.png" mode="aspectFill"></image>
+  </view>
+
+<!-- <view>
+<text class="tblin_items_txt" selectable="true">qllm_service@163.com</text>
+ <view class="tblin_items_btn" bindtap="copyTBL">复制</view>
+</view> -->
+
+<view class="relation_person">
+<text class="item_name" selectable="true">张倩</text>
+<text class="item_phone" bindtap="">13660621759</text>
+<view class="item_call" data-phone="13660621759" bindtap="phoneCall">
+   <image class="item_call_img" src="../../images/call.png" mode=""></image>
+</view>
+</view>
+<view class="relation_person">
+<text class="item_name" selectable="true">徐贺霜</text>
+<text class="item_phone" bindtap="">18513858628</text>
+<view class="item_call" data-phone="18513858628" bindtap="phoneCall" >
+  <image class="item_call_img" src="../../images/call.png"  ></image>
+</view>
+</view>
+
+
+   
+   
+</view>

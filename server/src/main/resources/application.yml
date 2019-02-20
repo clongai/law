@@ -1,0 +1,60 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: law-server
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://120.24.72.157:3306/law?useUnicode=true&characterEncoding=utf8
+        username: law
+        password: law@123
+#        url: jdbc:mysql://localhost:3306/law?useUnicode=true&characterEncoding=utf8
+#        username: root
+#        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        durid:
+             initialSize: 2
+             minIdle: 2
+             maxActive: 5
+             maxWait: 60000
+             timeBetweenEvictionRunsMillis: 60000
+             minEvictableIdleTimeMillis: 300000
+             validationQuery: SELECT 1 FROM DUAL
+             testWhileIdle: true
+             testOnBorrow: true
+             testOnReturn: false
+             filters: stat,wall,mergeStat
+             logSlowSql: true
+    jackson:
+        serialization:
+            indent-output: true
+    jpa:
+        hibernate:
+          ddl-auto: none
+        show-sql: true
+    http:
+        multipart:
+            maxFileSize: 100Mb
+            maxRequestSize: 100Mb
+
+law:
+    upload:
+        dir: /home/law/upload/files/
+#        dir: D:\\Qcode\\
+    imagesUrl: /home/law/images/
+#    imagesUrl: D:\Project\asiainfo\law-master\wx\images
+    appId: wx808534fbe91d9402
+    appSecret: 9aa08914483969df12cc55578b2d1d77
+    wxpay:
+        mchId: 1518714981
+        cretUrl: /home/law/wx/b/apiclient_cert.p12
+#        cretUrl: C:\\Users\\404\\Downloads\\cert (1)\\apiclient_cert.p12
+        httpConnectTimeoutMs: 10000
+        httpReadTimeoutMs: 10000
+        spbillCreateIp: 120.24.72.157
+        key: BkFO88N6eN1inZAMo0saPKQVNLpVPU2G
+
+
+logging:
+    file: logs/law-server.log

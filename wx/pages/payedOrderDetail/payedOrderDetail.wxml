@@ -1,0 +1,75 @@
+<!--pages/payedOrderDetail/payedOrderDetail.wxml-->
+<view class='payed-detail'>
+  <view class='payed-head' style="background: url({{payedPngBase64}}); background-size: cover;">
+    <view class='payed-case-id'>
+      <text>案件ID</text>
+      <text>314325</text>
+    </view>
+    <view class='payed-lawyer'>
+      <view class='payed-lawyer-img'>
+        <image src=""></image>
+      </view>
+      <view class='payed-lawyer-info'>
+        <view class='payed-laywer-info-top'>
+          <text class='payed-laywer-name'>{{laywerName}}</text>
+          <text class='payed-laywer-degree'>王牌律师</text>
+          <text wx:for="{{degree}}" style='display: inline-block; width: 10px; height: 8px; margin-left: 8rpx; background: url({{diamondPngBase64}}); background-size: cover;'></text>
+        </view>
+        <view class='payed-lawyer-bottom'>
+          <text>领域：{{area}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='payed-content' wx:if="{{status == '13'}}">
+    <view class='payed-message'>
+      <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当事人{{orderOp.partyPersonName}}的{{orderOp.appeal}}案件,可以受理，请准备好相关材料。</text>
+      <text space="{{true}}" decode="{{true}}">清单如下&nbsp;{{orderOp.fileList}}</text>
+   
+    </view>
+    <view class="payed-data-list">
+      <view class="payed-data-list-item">
+        <text class="list-item-label">面谈时间</text>
+        <text class='list-item-text'>{{meetTime}}</text>
+      </view>
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系人</text>
+        <text class='list-item-text'>{{contactPeople}}</text>
+      </view>
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系电话</text>
+        <text class='list-item-text'>{{contactPhone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='payed-content' wx:if="{{status == '14'||status == '5'}}">
+    <view class='payed-message'>
+      <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当事人{{orderOp.partyPersonName}}的{{orderOp.appeal}}案件,可以受理，请准备好相关材料。</text>
+      <text space="{{true}}" decode="{{true}}">清单如下&nbsp;{{orderOp.refuseReason}}</text>
+   
+    </view>
+    <view class="payed-data-list">
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系人</text>
+        <text class='list-item-text'>{{contactPeople}}</text>
+      </view>
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系电话</text>
+        <text class='list-item-text'>{{contactPhone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='payed-content' wx:if="{{status == 'finalTrailPayed'}}">
+    <view class='payed-message'>
+      <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{message}}</text>
+    </view>
+  </view>
+  <view class='payed-footer'>
+    <view class='payed-footer-btn case-back'>
+      <button class='weui-btn btn-danger btn-plain' bindtap='orderDetail'>案件回放</button>
+    </view>
+    <view class='payed-footer-btn case-process'>
+      <button class='weui-btn btn-danger btn-plain'>查看进程</button>
+    </view>
+  </view>
+</view>

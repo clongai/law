@@ -1,0 +1,86 @@
+<view class="mine-info">
+  <view class="page-top-box">
+    <image src="../../images/mine/wdbg.png"></image>
+  </view>
+  <view class="userinfo">
+    <view class="userinfo-header">
+      <view class="userinfo-img" wx:if="{{!userInfo && canIUse}}">
+        <image class="userinfo-avatar" src="../../images/tiyu.png" mode="cover">
+        </image>
+      </view>
+      <block wx:else class="clearfix">
+        <view class="userinfo-img">
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        </view>
+        <view class="userinfo-msg">
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+          <!-- <text class="userinfo-nickid">ID:</text> -->
+        </view>
+        <view class="userinfo-code" bindtap="showQR">
+          <view class="userinfo-qr-box">
+            <view><image src="../../images/mine/ewm.png"></image></view>
+            <view class="userinfo-qr-text">推荐码</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="userinfo-content" wx:if="{{!qr}}">
+      <view class="button-sp-area" wx:if="{{!userInfo && canIUse}}">
+        <button class="weui-btn middle-btn" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录 </button>
+      </view>
+      <!-- <view class="button-sp-area">
+        <button class="weui-btn middle-btn" wx:if="{{canIUse}}" open-type="openSetting" bindopensetting="handler">设置 </button>
+      </view> -->
+      <view wx:if="{{userInfo}}" class="userinfo-list-box">
+        <view class="userinfo-list userinfo-base-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/grxx.png"></image>
+          </view>
+          <view class="userInfo-base-text" bindtap='goOwnInfo'>个人信息</view>
+        </view>
+        <view class="userinfo-list userinfo-base-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/grxx.png"></image>
+          </view>
+          <view class="userInfo-base-text" bindtap="goMyRelation" >我的朋友圈</view>
+        </view>
+        <view class="userinfo-list userinfo-help-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/sybz.png"></image>
+          </view>
+          <view class="userInfo-base-text" bindtap="goUseHelp">使用帮助</view>
+        </view>
+        <view class="userinfo-list userinfo-help-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/kfyfk.png"></image>
+          </view>
+          <view class="userInfo-base-text">
+          <button plain="plain" open-type="contact" bindtap="toChat">客服与反馈</button>
+          </view>
+        </view>
+        <view class="userinfo-list userinfo-help-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/lxwm.png"></image>
+          </view>
+          <view class="userInfo-base-text" bindtap="toRelationMe">联系我们</view>
+        </view>
+        <view class="userinfo-list userinfo-help-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/fxgpy.png"></image>
+          </view>
+          <view class="userInfo-base-text">
+          <button plain="plain" open-type="share">分享给朋友</button>
+          </view>
+        </view>
+        <view class="userinfo-list userinfo-help-box clearfix">
+          <view class="userinfo-base-img">
+            <image src="../../images/mine/fxgpy.png"></image>
+          </view>
+          <view class="userInfo-base-text">
+          <button plain="plain" >上法院</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

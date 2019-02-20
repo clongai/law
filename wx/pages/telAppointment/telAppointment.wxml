@@ -1,0 +1,82 @@
+<view class="order-detail">
+  <view class="order-detail-top">
+    <view class="order-status">{{statusMap[status]}}</view>
+    <view wx-if="{{status=='2' || status=='5'}}" class="order-text">{{acceptRemark}}</view>
+    <view wx-if="{{status=='2' || status=='5'}}" class="order-text">面谈时间：{{acceptDate}}</view>
+    <view wx-if="{{status=='2' || status=='5'}}" class="order-text">联系人：{{acceptContracts}}</view>
+    <view wx-if="{{status=='2' || status=='5'}}" class="order-text">联系电话：{{acceptPhone}}</view>
+    <view wx-if="{{status=='3' || status=='6'}}" class="order-text">拒绝原因：{{refuseReason}}</view>
+    <view wx-if="{{status=='0'}}" class="order-text">请耐心等待负责人的审核，谢谢</view>
+    <view class="order-status-img">
+      <image src="{{statusImgMap[status]}}"></image>
+    </view>
+  </view>
+  <view class="list-detail-page">
+  <view class="list-detail-inner">
+    <view class="weui-cells weui-cells-first">
+      <view class="weui-cell is-required">
+       
+        <view class="weui-cell__hd">
+          <label class="weui-label">预约电话沟通时间</label>
+        </view>
+        
+      </view>
+     
+      <view class="weui-cell is-required">
+        
+        <view class="weui-cell_telappo date-special">
+          <view wx:if="{{!edit}}">{{endTime}}</view>
+          <radio-group wx:if="{{edit}}" bindchange="radioChange">
+            <!-- <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:for-item="item" wx:for-index="idx">
+              <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+              <view class="weui-cell__ft weui-cell__ft_in-radio">
+                <view class="weui-icon-radio" wx:if="{{item.checked}}"></view>
+                 <icon class="weui-icon-radio" wx:if="{{item.checked}}" type="success_no_circle" size="14"></icon> 
+              </view>
+              <view class="weui-cell__bd">
+                <view wx:if="{{item.value == 0 || item.value == 1 || item.value == 2 || item.value == 3}}">{{item.name}}</view>
+                
+              </view>
+ 
+               
+            </label> -->
+          
+            <view class='weui-cell'>
+             <!-- <picker  class="weui-btn weui-more" mode="date" start="{{startTime}}" value="{{endTime}}" end="{{currentDate}}" bindchange="bindDateChange" data-key="startTime">
+                <input class="weui-input" value="{{startTime}}" disabled type="date" placeholder="请选择开始日期" />
+                </picker>
+                <picker  class="weui-btn weui-more" mode="time" start="{{startTime}}" value="hh:mm" end="{{currentDate}}" bindchange="bindDateChange" data-key="startTime">
+                <input class="weui-input" value="{{startTime}}" disabled type="date" placeholder="请选择时间" />
+                </picker> -->
+                <picker  class="weui-btn weui-more" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}"  data-key="startTime" range="{{multiArray}}">
+    <input  class="weui-input"  value='{{startTime}}' placeholder='请选择开始时间'/>
+  </picker>
+                </view>
+                <view class='weui-cell'>
+                 <picker  class="weui-btn weui-more" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}"  data-key="endTime" range="{{multiArray}}">
+    <input  class="weui-input"  value='{{endTime}}' placeholder='请选择结束时间'/>
+  </picker>       
+                <!-- <picker  class="weui-btn weui-more" mode="date" start="{{startTime}}" value="{{endTime}}" end="{{currentDate}}" bindchange="bindDateChange" data-key="endTime">
+                <input class="weui-input" value="{{endTime}}" disabled type="date" placeholder="请选择结束时间" />
+                </picker>
+                <picker  class="weui-btn weui-more" mode="time" start="{{startTime}}" value="hh:mm" end="{{currentDate}}" bindchange="bindDateChange" data-key="endTime">
+                <input class="weui-input" value="{{endTime}}" disabled type="date" placeholder="请选择结束时间" />
+                </picker> -->
+                </view>
+          </radio-group>
+          
+        </view>
+      </view>
+      
+     
+      
+      
+    </view>
+
+  
+    <view  wx:if="{{edit && status!=='fail'}}" class="button-sp-area">
+      <button class="weui-btn middle-btn" size="middle" bindtap="submit">提交</button>
+    </view>
+  </view>
+</view>
+</view>

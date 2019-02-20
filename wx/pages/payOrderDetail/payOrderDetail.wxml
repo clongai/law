@@ -1,0 +1,83 @@
+<view class="pay-order-list">
+  <view class="pay-head">
+    <view class="pay-head-description">
+      <view class="pay-head-title">等待付款</view>
+      <view class="pay-head-text" wx:if="{{status == '1'}}">初审已经通过，请选择一档咨询服务，付款成功后即可与律师进行面对面咨询。</view>
+      <view class="pay-head-text" wx:if="{{status == '4' || status == '8'}}">终审已通过，请支付中介费，付款成功后，律师接受此案代理诉讼。</view>
+    </view>
+    <view class="pay-choice">
+      <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="5000" duration="1000" current="{{current}}" indicator-color="#d8d8d8" indicator-active-color="#FA7564" circular="true" bindchange="swiperChange">
+        <block wx:if="{{status == '1'}}" wx:for="{{firstTrailPriceList}}" wx:for-index="index" wx:key="index">
+          <swiper-item>
+            <view class="pay-item" style="background: url({{payPngBase64}}); background-size: cover;">
+              <view class="pay-item-group">
+                <text class="pay-item-title">{{item.serviceGroup}}</text>
+                <view class="degree-diamond">
+                  <text wx:for="{{item.serviceLevel}}" wx:key="index" style='background: url({{diamondPngBase64}}); background-size: cover;'></text>
+                </view>
+              </view>
+              <view class="pay-item-price">{{item.serviceFee}}<text>元/次</text></view>
+              <view class="pay-item-exp">服务项目: {{item.serviceProject}}</view>
+              <view class="pay-item-exp">服务内容: {{item.serviceDetail}}</view>
+            </view>
+          </swiper-item>
+        </block>
+        <block wx:if="{{status == '4' || status == '8'}}"  wx:for="{{finalTrailPriceList}}" wx:for-index="index" wx:key="index" wx:item="item">
+          <swiper-item>
+            <view class="pay-item" style="background: url({{payPngBase64}}); background-size: cover;">
+              <view class="pay-item-group">{{item.type}}</view>
+              <view class="pay-item-price">{{item.interPrice}}<text>元</text></view>
+              <view class="pay-item-exp">按涉案金额的{{item.rate}}收取，本案涉案金额为{{item.price}}元，因此中介费计算公式为({{item.price}}/0.2)*{{item.rate}}+{{item.price}}={{item.interPrice}}元</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class="pay-content">
+    <view class="pay-content-list pay-more">
+      <view class="pay-content-label">ID</view>
+      <view class="pay-content-text">{{orderId}}</view>
+    </view>
+    <view class="pay-content-list">
+      <view class="pay-content-label">当事人</view>
+      <view class="pay-content-text">{{prosecutor}}</view>
+    </view>
+    <view class="pay-content-list">
+      <text class="pay-content-label">诉求</text>
+      <text class="pay-content-text">{{appeal}}</text>
+    </view>
+    <view class="pay-content-list" wx:if="{{!showContract}}">
+      <text class="pay-content-label">地址</text>
+      <text class="pay-content-text">{{place}}</text>
+    </view>
+    <view class="pay-content-list">
+      <text class="pay-content-label">日期</text>
+      <text class="pay-content-text">{{doneDate}}</text>
+    </view>
+    <view class="contract-radio" wx:if="{{showContract}}">
+      <radio-group bindchange="radioChange">
+        <label class="weui-cell" style="min-height: 30px;">
+          <radio class="weui-check" value="1" checked="{{agreed}}"/>
+          <view class="weui-cell__bd">同意服务条款</view>
+          <view class="weui-cell__ft weui-cell__ft_in-radio {{agreed == true ? 'is-checked' : ''}}">
+            <icon></icon>
+          </view>
+        </label>
+      </radio-group>
+    </view>
+    <view class="pay-btn-box">
+      <button class="weui-btn btn-danger" wx:if="{{payType == '预付费'}}" bindtap="submit">立即支付{{selectedPrice}}元</button>
+      <button class="weui-btn btn-danger" wx:if="{{payType == '后付费'}}" bindtap="submit">结案后支付{{selectedPrice}}元</button>
+      <view  wx:if="{{status == '4'}}">
+      <button  class="weui-btn btn-danger" bindtap="modalinput">拒绝</button>
+      </view>
+    </view>
+    <view wx:if="{{status == '4'}}">
+    <modal id="modal" hidden="{{hiddenmodalput}}" title="拒绝" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+      <input type='text'  data-name="customerRefuseReason" bindinput='inputCustomerRefuseReason' placeholder="请输入原因" auto-focus/>
+  </modal>
+  </view>
+  </view>
+  
+</view>

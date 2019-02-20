@@ -1,0 +1,78 @@
+<view class="list-detail-page">
+  <view class="list-detail-inner">
+    <view class="weui-cells {{idx === 0 ? 'weui-cells-first' : ''}}" wx:for="{{lawPerson}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+    <view class="weui-title" wx:if="{{personType === '1'}}">当事人{{idx+1}}</view>
+    <view class="weui-title" wx:if="{{personType === '2'}}">对方当事人{{idx+1}}</view>
+    <view class="weui-title" wx:if="{{personType === '3'}}">关系人{{idx+1}}</view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">姓名</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.personName}}" name="{{'personName'+(idx+1)}}" type="text" placeholder="请输入姓名" bindinput="inputEvent" data-key="personName" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.personName}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <label class="weui-label">身份证</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.personCardNo}}" type="idcard" placeholder="请输入身份证" bindblur='cardBlur' bindinput="inputEvent" data-key="personCardNo" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.personCardNo}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <label class="weui-label">年龄</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.personAge}}" type="digit" placeholder="请输入年龄" bindinput="inputEvent" data-key="personAge" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.personAge}}</view>
+        </view>
+      </view>
+      <view class="weui-cell is-required">
+        <view class="weui-cell__hd">
+          <label class="weui-label">手机号</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.personPhone}}"  type="number" name="{{'personPhone'+(idx+1)}}" type="text" placeholder="请输入电话" bindinput="inputEvent" data-key="personPhone" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.personPhone}}</view>
+        </view>
+      </view>
+
+<view class="weui-cell" wx:if="{{personType === '2'}}" >
+        <view class="weui-cell__hd">
+          <label class="weui-label">座机号</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.landline}}" name="{{'landline'+(idx+1)}}" type="text" placeholder="请输入座机号码" bindinput="inputEvent" data-key="landline" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.landline}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell" wx:if="{{personType === '2'}}" >
+        <view class="weui-cell__hd">
+          <label class="weui-label">邮箱</label>
+        </view>
+        <view class="weui-cell__bd">
+          <input wx:if="{{edit}}" class="weui-input" value="{{item.personEmail}}" name="{{'personEmail'+(idx+1)}}" type="text" placeholder="请输入邮箱" bindinput="inputEvent" data-key="personEmail" data-idx="{{idx}}" />
+          <view wx:if="{{!edit}}">{{item.personEmail}}</view>
+        </view>
+      </view>
+
+    </view>
+    <view class="button-sp-area text-area" wx:if="{{personType === '1' && edit}}">
+      <button class="weui-btn middle-btn text-button" size="middle" bindtap="addPerson" data-type="{{personType}}">+新增当事人</button>
+    </view>
+    <view class="button-sp-area text-area" wx:if="{{personType === '2' && edit}}">
+      <button class="weui-btn middle-btn text-button" size="middle" bindtap="addPerson" data-type="{{personType}}">+新增对方当事人</button>
+    </view>
+    <view class="button-sp-area text-area" wx:if="{{personType === '3' && edit}}">
+      <button class="weui-btn middle-btn text-button" size="middle" bindtap="addPerson" data-type="{{personType}}">+新增关系人</button>
+    </view>
+    <view class="button-sp-area" wx:if="{{edit}}">
+      <button class="weui-btn middle-btn" size="middle" bindtap="submit">保存</button>
+    </view>
+  </view>
+</view>
