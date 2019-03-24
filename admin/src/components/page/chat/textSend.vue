@@ -3,19 +3,40 @@ import { actions } from '../../../store';
 
 export default {
     vuex: {
-        actions: actions
+        actions: actions,
+        getters: {
+            // 当前会话index
+            currentId: ({ currentSessionId }) => currentSessionId
+        }
     },
+    
     data () {
         return {
-            content: 'ceshi'
+            content: 'ceshi',
+            count: 0
         };
+    },
+    mounted: function () {
+           
+    },created(){
+        
     },
     methods: {
         onKeyup (e) {
             if (e.ctrlKey && e.keyCode === 13 && this.content.length) {
-                this.sendMessage(this.content);
-                this.content = '';
+            
+                this.$axios.post('/api/sendMessage', {
+                    toUser: this.currentId,
+                    content:this.content
+                }).then((res) => {
+                    console.log(res.data)
+                  this.sendMessage(this.content);
+                    this.content = '';
+                })
+               
             }
+        },sendText (content) {
+           console.log(content)
         }
     }
 };

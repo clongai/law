@@ -22,8 +22,20 @@ public class LawPromoter {
     private Integer promoterLevel;
     private String status;
     protected Date createTime;
+    private String avatarUrl;
+    
+    
 
-    @Id
+    @Column(name = "avatar_url")
+    public String getAvatarUrl() {
+		return avatarUrl;
+	}
+
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
+
+	@Id
     @Column(name = "promoter_id")
     public int getPromoterId() {
         return promoterId;

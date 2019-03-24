@@ -42,7 +42,8 @@
       </view>
     </view>
   </view>
-  <view class='payed-content' wx:if="{{status == '14'||status == '5'}}">
+
+  <view class='payed-content' wx:if="{{status == '14'}}">
     <view class='payed-message'>
       <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当事人{{orderOp.partyPersonName}}的{{orderOp.appeal}}案件,可以受理，请准备好相关材料。</text>
       <text space="{{true}}" decode="{{true}}">清单如下&nbsp;{{orderOp.refuseReason}}</text>
@@ -59,6 +60,39 @@
       </view>
     </view>
   </view>
+
+  <view class='payed-content' wx:if="{{status == '5'}}">
+    <view wx:if="{{orderOp.termsType == 'A' || orderOp.termsType == 'B'}}">
+      <view  class='payed-message' wx:if="{{lawFileList == ''}}">
+        
+      </view>
+       <block wx:for="{{lawFileList}}" wx:for-index="index" wx:key="index">
+        <view class='payed-footer-btn case-back'>
+          <button class='weui-btn btn-danger btn-plain' data-filename="{{item.fileOrgName}}" data-fileid="{{item.fileId}}" bindtap='lookLawBook'>查看法律文书{{item.fileOrgName}}</button>
+        </view>
+       </block>
+       <view  class='payed-message' wx:if="{{orderOp.termsType == 'B'}}">
+        <text>可通过客服与反馈与法务沟通</text>
+       </view>
+    </view>
+    <view wx:if="{{orderOp.termsType == 'C'}}">
+    <view class='payed-message'>
+      <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当事人{{orderOp.partyPersonName}}的{{orderOp.appeal}}案件,可以受理，请准备好相关材料。</text>
+      <text space="{{true}}" decode="{{true}}">清单如下&nbsp;{{orderOp.refuseReason}}</text>
+    </view>
+    <view class="payed-data-list">
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系人</text>
+        <text class='list-item-text'>{{contactPeople}}</text>
+      </view>
+      <view class="payed-data-list-item">
+        <text class="list-item-label">联系电话</text>
+        <text class='list-item-text'>{{contactPhone}}</text>
+      </view>
+    </view>
+    </view>
+  </view>
+
   <view class='payed-content' wx:if="{{status == 'finalTrailPayed'}}">
     <view class='payed-message'>
       <text space="{{true}}" decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{message}}</text>

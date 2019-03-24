@@ -13,7 +13,7 @@ const store = new Vuex.Store({
         // 当前用户
         user: {
             name: 'coffce',
-            img: 'src/components/page/chat/dist/images/1.jpg'
+            img: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWomXBr0yobM9aEXkibHTcjPZ8sGFuln8BNkSIibsibicibZKjiaFYeoSs39YtlLXlw0oDEkoicSIJyF2nQ/132'
         },
         // 会话列表
         sessions: [
@@ -43,7 +43,7 @@ const store = new Vuex.Store({
             }
         ],
         // 当前选中的会话
-        currentSessionId: 1,
+        currentSessionId: 'oBy6H5NqEAPFQS3oT6t6RsC4_dWk',
         // 过滤出只包含这个key的会话
         filterKey: ''
     },

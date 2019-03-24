@@ -13,146 +13,143 @@ import java.util.Objects;
 @Entity
 @Table(name = "law_pay", schema = "law", catalog = "")
 public class LawPay {
-    private int payId;
-    private String outTradeNo;
-    private int orderId;
-    private int feeType;
-    private int payType;
-    private BigDecimal fee;
-    private int tradeState;
-    private int serviceId;
-    private String serviceProject;
-    private String doneCode;
-    private Date doneDate;
+	private int payId;
+	private String outTradeNo;
+	private int orderId;
+	private int feeType;
+	private int payType;
+	private BigDecimal fee;
+	private int tradeState;
+	private int serviceId;
+	private String serviceProject;
+	private String doneCode;
+	private Date doneDate;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "pay_id", nullable = false)
-    public int getPayId() {
-        return payId;
-    }
 
-    public void setPayId(int payId) {
-        this.payId = payId;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pay_id", nullable = false)
+	public int getPayId() {
+		return payId;
+	}
 
-    @Basic
-    @Column(name = "out_trade_no")
-    public String getOutTradeNo() {
-        return outTradeNo;
-    }
+	public void setPayId(int payId) {
+		this.payId = payId;
+	}
 
-    public void setOutTradeNo(String outTradeNo) {
-        this.outTradeNo = outTradeNo;
-    }
+	@Basic
+	@Column(name = "out_trade_no")
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
 
-    @Basic
-    @Column(name = "service_id")
-    public int getServiceId() {
-        return serviceId;
-    }
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
-    }
+	@Basic
+	@Column(name = "service_id")
+	public int getServiceId() {
+		return serviceId;
+	}
 
-    @Basic
-    @Column(name = "service_project")
-    public String getServiceProject() {
-        return serviceProject;
-    }
+	public void setServiceId(int serviceId) {
+		this.serviceId = serviceId;
+	}
 
-    public void setServiceProject(String serviceProject) {
-        this.serviceProject = serviceProject;
-    }
+	@Basic
+	@Column(name = "service_project")
+	public String getServiceProject() {
+		return serviceProject;
+	}
 
-    @Basic
-    @Column(name = "order_id")
-    public int getOrderId() {
-        return orderId;
-    }
+	public void setServiceProject(String serviceProject) {
+		this.serviceProject = serviceProject;
+	}
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
+	@Basic
+	@Column(name = "order_id")
+	public int getOrderId() {
+		return orderId;
+	}
 
-    @Basic
-    @Column(name = "fee_type")
-    public int getFeeType() {
-        return feeType;
-    }
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
-    public void setFeeType(int feeType) {
-        this.feeType = feeType;
-    }
+	@Basic
+	@Column(name = "fee_type")
+	public int getFeeType() {
+		return feeType;
+	}
 
-    @Basic
-    @Column(name = "pay_type")
-    public int getPayType() {
-        return payType;
-    }
+	public void setFeeType(int feeType) {
+		this.feeType = feeType;
+	}
 
-    public void setPayType(int payType) {
-        this.payType = payType;
-    }
+	@Basic
+	@Column(name = "pay_type")
+	public int getPayType() {
+		return payType;
+	}
 
-    @Basic
-    @Column(name = "fee")
-    public BigDecimal getFee() {
-        return fee;
-    }
+	public void setPayType(int payType) {
+		this.payType = payType;
+	}
 
-    public void setFee(BigDecimal fee) {
-        this.fee = fee;
-    }
+	@Basic
+	@Column(name = "fee")
+	public BigDecimal getFee() {
+		return fee;
+	}
 
-    @Basic
-    @Column(name = "trade_state")
-    public int getTradeState() {
-        return tradeState;
-    }
+	public void setFee(BigDecimal fee) {
+		this.fee = fee;
+	}
 
-    public void setTradeState(int tradeState) {
-        this.tradeState = tradeState;
-    }
+	@Basic
+	@Column(name = "trade_state")
+	public int getTradeState() {
+		return tradeState;
+	}
 
-    @Basic
-    @Column(name = "done_code")
-    public String getDoneCode() {
-        return doneCode;
-    }
+	public void setTradeState(int tradeState) {
+		this.tradeState = tradeState;
+	}
 
-    public void setDoneCode(String doneCode) {
-        this.doneCode = doneCode;
-    }
+	@Basic
+	@Column(name = "done_code")
+	public String getDoneCode() {
+		return doneCode;
+	}
 
-    @Basic
-    @Column(name = "done_date")
-    public Date getDoneDate() {
-        return doneDate;
-    }
+	public void setDoneCode(String doneCode) {
+		this.doneCode = doneCode;
+	}
 
-    public void setDoneDate(Date doneDate) {
-        this.doneDate = doneDate;
-    }
+	@Basic
+	@Column(name = "done_date")
+	public Date getDoneDate() {
+		return doneDate;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(payId, orderId, feeType, payType, fee, doneCode, doneDate);
-    }
+	public void setDoneDate(Date doneDate) {
+		this.doneDate = doneDate;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LawPay lawPay = (LawPay) o;
-        return payId == lawPay.payId &&
-                Objects.equals(orderId, lawPay.orderId) &&
-                Objects.equals(feeType, lawPay.feeType) &&
-                Objects.equals(payType, lawPay.payType) &&
-                Objects.equals(fee, lawPay.fee) &&
-                Objects.equals(doneCode, lawPay.doneCode) &&
-                Objects.equals(doneDate, lawPay.doneDate);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(payId, orderId, feeType, payType, fee, doneCode, doneDate);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		LawPay lawPay = (LawPay) o;
+		return payId == lawPay.payId && Objects.equals(orderId, lawPay.orderId) && Objects.equals(feeType, lawPay.feeType) && Objects.equals(payType, lawPay.payType) && Objects.equals(fee, lawPay.fee) && Objects.equals(doneCode, lawPay.doneCode) && Objects.equals(doneDate, lawPay.doneDate);
+	}
 
 }

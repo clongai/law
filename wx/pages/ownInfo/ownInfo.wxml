@@ -13,7 +13,7 @@
   </view>
   <view class="relation-page-top">
           <view class="leftText">账号</view>
-          <view class="rightText">{{openId}}</view>
+          <view class="rightText">{{userPhone?userPhone:openId}}</view>
   </view>
   
    

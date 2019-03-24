@@ -14,5 +14,9 @@ public class UserService {
   public SysUser getSysUser(String userName,String userPwd){
     return sysUserRepository.findOneByUserNameAndUserPwd(userName,userPwd);
   }
+  
+  public SysUser save(SysUser user) {
+	  return sysUserRepository.save(user);
+  }
 
 }

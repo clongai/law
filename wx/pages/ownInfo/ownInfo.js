@@ -11,7 +11,8 @@ Page({
     userInfo: '',
     relationData:'',
     relationDataCount:'',
-    parentData:''
+    parentData:'',
+    userPhone:''
   },
   /**
    * 生命周期函数--监听页面卸载
@@ -22,6 +23,7 @@ Page({
       this.setData({
         userInfo: wx.getStorageSync('userInfo')
       });
+      console.log(this.data.userInfo)
     }
     if (!wx.getStorageSync('openId')) {
       app.getOpenId().then(function (res) {
@@ -53,11 +55,13 @@ Page({
       },
       method: 'POST',
       success: res => {
+        console.log(res)
         wx.setStorageSync('relationData', res.data.child)
         that.setData({
           relationData: res.data.child,
           relationDataCount: res.data.child.length,
-          parentData: res.data.parent
+          parentData: res.data.parent,
+          userPhone: res.data.lawPromoter.promoterTel
         })
       }
     })

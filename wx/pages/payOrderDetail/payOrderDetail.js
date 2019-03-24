@@ -23,7 +23,8 @@ Page({
     payPngBase64: '',
     body: '',
     hiddenmodalput: true,
-    customerRefuseReason: ''
+    customerRefuseReason: '',
+    termsType:'A'
   },
   onLoad: function (options) {
     this.getDiamondBase64()
@@ -72,7 +73,7 @@ Page({
           this.setData(obj);
         }
         if (this.data.status == '4' || this.data.status == '8') {
-          var prePay = {
+          /*var prePay = {
             price: null,
             interPrice: null,
             rate: '3%',
@@ -83,7 +84,31 @@ Page({
             interPrice: null,
             rate: '16%',
             type: "后付费"
+          } 
+          */
+    
+          var quetoA = {
+            price: res.data.orderPO.quoteA,
+            interPrice: res.data.orderPO.quoteA,
+            rate: '3%',
+            termsType:'A',
+            type: "提供法律文书，当事人自行处理"
           }
+          var quetoB = {
+            price: res.data.orderPO.quoteB,
+            interPrice: res.data.orderPO.quoteB,
+            rate: '16%',
+            termsType: 'B',
+            type: "提供法律文书，全程跟踪指导"
+          } 
+          var quetoC = {
+            price: res.data.orderPO.quoteC,
+            interPrice: res.data.orderPO.quoteC,
+            rate: '16%',
+            termsType: 'C',
+            type: "与山东聚青签署委托代理协议"
+          } 
+          //debugger;
           /*根据涉案金额计算中介费费*/
            /*prePay.price = res.data.lawOrder.involvingMoney
           prePay.interPrice = prePay.price * 0.03 //预付费
@@ -91,15 +116,17 @@ Page({
           suffixPay.interPrice = prePay.price * 0.15 //
           */
           /*根据代理金额计算中代理费*/
-          prePay.price = res.data.lawOrder.agentMoney
+         /* prePay.price = res.data.lawOrder.agentMoney
           prePay.interPrice = res.data.orderPO.agentMoneyPay;
           suffixPay.price = res.data.lawOrder.agentMoney
           suffixPay.interPrice = res.data.orderPO.taxAgentMoneyPay;
+           */
+        
 
-          var finalTrailPriceList = [prePay, suffixPay]
+          var finalTrailPriceList = [quetoA, quetoB, quetoC]
           this.setData({
             finalTrailPriceList: finalTrailPriceList,
-            selectedPrice: prePay.interPrice
+            selectedPrice: quetoA.interPrice
           })
         }
 
@@ -155,12 +182,14 @@ Page({
     })
   },
   swiperChange: function (e) {
+    
     var obj = {
       selectedPrice: this.data.selectedPrice,
       payType: this.data.payType,
       serviceId: this.data.serviceId,
       serviceLevel: this.data.serviceLevel,
-      body: this.data.body
+      body: this.data.body,
+      termsType:this.data.termsType
     };
     if (this.data.status == '1') {
       obj.selectedPrice = this.data.firstTrailPriceList[e.detail.current].serviceFee
@@ -169,8 +198,10 @@ Page({
       obj.serviceLevel = this.data.firstTrailPriceList[e.detail.current].serviceLevel
     } else if (this.data.status == '4' || this.data.status == '8') {
       obj.selectedPrice = this.data.finalTrailPriceList[e.detail.current].interPrice
-      obj.payType = this.data.finalTrailPriceList[e.detail.current].type
+      obj.payType = '预付费'
+      obj.termsType = this.data.finalTrailPriceList[e.detail.current].termsType;
     }
+    
     this.setData(obj)
   },
   radioChange: function (e) {
@@ -186,12 +217,14 @@ Page({
       "payType": null,
       "tradeState": "0",
       "serviceId": this.data.serviceId,
-      "serviceLevel": this.data.serviceLevel
+      "serviceLevel": this.data.serviceLevel,
+      "termsType":null
     }
     if (this.data.status == '') {
       payOrder.feeType = 0;//咨询费
     } else if (this.data.status == '4' || this.data.status == '8') {
       payOrder.feeType = 1;//中介费
+      payOrder.termsType = this.data.termsType;
     }
     if (this.data.payType == '预付费') {
       payOrder.payType = 0;
@@ -215,6 +248,7 @@ Page({
     }
   },
   dopay: function (payOrder, status) {
+    debugger;
     wx.request({
       url: app.globalData.url + '/getWXPayParam',
       header: { 'Content-Type': 'application/json' },
@@ -222,6 +256,7 @@ Page({
       data: {
         openId: this.data.openId,
         status: status,
+        termsType: payOrder.termsType,
         lawPay: payOrder
       },
       success: res => {
@@ -237,7 +272,6 @@ Page({
     })
   },
   pay: function (val) {
-    debugger
     wx.requestPayment({
       timeStamp: val.timeStamp,
       nonceStr: val.nonceStr,

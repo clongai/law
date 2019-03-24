@@ -20,7 +20,27 @@
                         </el-menu-item>
                     </template>
                 </template>
+                <template v-if="orginazation === '2'">
+                <template v-for="orderHandle in chatHandles">
+                    <template v-if="orderHandle.subs">
+                        <el-submenu :index="orderHandle.index" :key="orderHandle.index">
+                            <template slot="title">
+                                <i :class="orderHandle.icon"></i><span slot="title">{{ orderHandle.title }}</span>
+                            </template>
+                            <el-menu-item v-for="(subItem,i) in orderHandle.subs" :key="i" :index="subItem.index">
+                                {{ subItem.title }}
+                            </el-menu-item>
+                        </el-submenu>
+                    </template>
+                    <template v-else>
+                        <el-menu-item :index="orderHandle.index" :key="orderHandle.index">
+                            <i :class="orderHandle.icon"></i><span slot="title">{{ orderHandle.title }}</span>
+                        </el-menu-item>
+                    </template>
+                </template>
             </template>
+            </template>
+            
             <template v-else>
                 <template v-for="bossView in bossViews">
                     <template v-if="bossView.subs">
@@ -51,11 +71,21 @@
             return {
                 collapse: false,
                 func: '',
+                orginazation:'',
                 orderHandles: [
                     {
                         icon: 'el-icon-setting',
                         index: 'order',
                         title: '报单处理'
+                    }
+                    
+                ],
+                 chatHandles: [
+                   
+                    {
+                        icon: 'el-icon-setting',
+                        index: 'chat',
+                        title: '沟通与反馈'
                     }
                 ],
                 bossViews: [
@@ -78,6 +108,7 @@
             bus.$on('collapse', msg => {
                 this.collapse = msg;
             })
+            this.orginazation = localStorage.getItem('ms_userOrginazation')
         }
     }
 </script>

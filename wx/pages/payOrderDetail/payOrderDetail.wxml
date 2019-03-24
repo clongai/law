@@ -27,7 +27,9 @@
             <view class="pay-item" style="background: url({{payPngBase64}}); background-size: cover;">
               <view class="pay-item-group">{{item.type}}</view>
               <view class="pay-item-price">{{item.interPrice}}<text>元</text></view>
+              <block wx:if="{{ status == '8'}}">
               <view class="pay-item-exp">按涉案金额的{{item.rate}}收取，本案涉案金额为{{item.price}}元，因此中介费计算公式为({{item.price}}/0.2)*{{item.rate}}+{{item.price}}={{item.interPrice}}元</view>
+               </block>
             </view>
           </swiper-item>
         </block>

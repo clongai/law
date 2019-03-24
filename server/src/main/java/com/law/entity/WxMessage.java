@@ -125,4 +125,11 @@ public class WxMessage {
 		this.msgSource = msgSource;
 	}
 
+	@Override
+	public String toString() {
+		return "WxMessage [id=" + id + ", msgId=" + msgId + ", fromUser=" + fromUser + ", toUser=" + toUser + ", msgType=" + msgType + ", content=" + content + ", mediaId=" + mediaId + ", createTime=" + createTime + ", picUrl=" + picUrl + ", doneTime=" + doneTime + ", msgSource=" + msgSource + "]";
+	}
+	
+	
+
 }

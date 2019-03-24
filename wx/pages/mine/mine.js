@@ -45,6 +45,7 @@ Page({
       this.setData({
         userInfo: wx.getStorageSync('userInfo')
       });
+      this.updatePromoterInfo(this.data.userInfo.nickName, this.data.userInfo.avatarUrl);
     }
     if (!wx.getStorageSync('openId')) {
       app.getOpenId().then(function (res) {
@@ -61,9 +62,7 @@ Page({
     }
     this.getwxacode();
     
-    if (this.data.userInfo){
-      this.updatePromoterInfo(this.data.userInfo.nickName);
-    }
+   
 
   },
   showQR: function () {
@@ -126,14 +125,15 @@ Page({
       }
     })
   },
-  updatePromoterInfo: function (nickName) {
+  updatePromoterInfo: function (nickName, avatarUrl) {
     var that = this;
     wx.request({
       url: app.globalData.url + 'updatePromoterInfo',
       header: { 'Content-Type': 'application/json' },
       data: {
         openId: wx.getStorageSync('openId'),
-        nickName: nickName
+        nickName: nickName,
+        avatarUrl:avatarUrl       
       },
       method: 'POST',
       success: res => {

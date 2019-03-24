@@ -6,12 +6,12 @@ spring:
         name: law-server
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://120.24.72.157:3306/law?useUnicode=true&characterEncoding=utf8
-        username: law
-        password: law@123
-#        url: jdbc:mysql://localhost:3306/law?useUnicode=true&characterEncoding=utf8
-#        username: root
-#        password: root
+#        url: jdbc:mysql://120.24.72.157:3306/law?useUnicode=true&characterEncoding=utf8
+#        username: law
+#        password: law@123
+        url: jdbc:mysql://localhost:3306/law?useUnicode=true&characterEncoding=utf8
+        username: root
+        password: root
         type: com.alibaba.druid.pool.DruidDataSource
         durid:
              initialSize: 2
@@ -40,10 +40,10 @@ spring:
 
 law:
     upload:
-        dir: /home/law/upload/files/
-#        dir: D:\\Qcode\\
-    imagesUrl: /home/law/images/
-#    imagesUrl: D:\Project\asiainfo\law-master\wx\images
+#        dir: /home/law/upload/files/
+        dir: D:\\Qcode\\
+#    imagesUrl: /home/law/images/
+    imagesUrl: D:\Project\asiainfo\law-master\wx\images
     appId: wx808534fbe91d9402
     appSecret: 9aa08914483969df12cc55578b2d1d77
     wxpay:

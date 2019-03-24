@@ -36,7 +36,7 @@
                         <!--待审核-->
                         <el-button v-if="((scope.row.status == '0' || scope.row.status == '16' || scope.row.status == '12' || scope.row.status == '13' ) && orginazation == '1')
                         || ((scope.row.status == '2' || scope.row.status == '15'  ) && orginazation == '2')
-                        || (scope.row.status == '7' && orginazation == '3') " size="small" type="text" @click="handleOrder(scope.row)">处理</el-button>
+                        || (scope.row.status == '7' && orginazation == '3') " size="small" type="text" style="color:red;" @click="handleOrder(scope.row)">处理</el-button>
                         <!--其他状态只能查看-->
                         <el-button v-else size="small" type="text" @click="handleOrder(scope.row)">查看</el-button>
                     </template>

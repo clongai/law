@@ -34,9 +34,9 @@ public class LawOrderExt {
 	private Date customStratTime;
 	private String fileList;
 	private String feedbackOpinion;
-	
-	
-	@Column(name="feedback_opinion")
+	private String analysisResult;
+
+	@Column(name = "feedback_opinion")
 	public String getFeedbackOpinion() {
 		return feedbackOpinion;
 	}
@@ -45,7 +45,7 @@ public class LawOrderExt {
 		this.feedbackOpinion = feedbackOpinion;
 	}
 
-	@Column(name="file_list")
+	@Column(name = "file_list")
 	public String getFileList() {
 		return fileList;
 	}
@@ -228,6 +228,15 @@ public class LawOrderExt {
 
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
+	}
+
+	@Column(name = "analysis_result")
+	public String getAnalysisResult() {
+		return analysisResult;
+	}
+
+	public void setAnalysisResult(String analysisResult) {
+		this.analysisResult = analysisResult;
 	}
 
 }

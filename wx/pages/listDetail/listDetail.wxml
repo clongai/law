@@ -53,7 +53,12 @@
           <label class="weui-label">地点</label>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" value="{{place}}" type="text" placeholder="请输入地点" bindinput="inputEvent" data-key="place" />
+          <!-- <input class="weui-input" value="{{place}}" type="text" placeholder="请输入地点" bindinput="inputEvent" data-key="place" /> -->
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+    <button bindtap="setPlace" data-place = "{{multiArray[0][multiIndex[0]].name}}{{multiArray[1].length > 0 ?(',' + multiArray[1][multiIndex[1]].name ):''}}{{multiArray[2].length > 0 ?(',' + multiArray[2][multiIndex[2]].name):''}}" class="addressBtn">
+      {{multiArray[0][multiIndex[0]].name}}{{multiArray[1].length > 0 ?("，" + multiArray[1][multiIndex[1]].name ):""}}{{multiArray[2].length > 0 ?("，" + multiArray[2][multiIndex[2]].name):""}}
+    </button>
+  </picker>
         </view>
       </view>
     </view>

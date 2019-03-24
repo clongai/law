@@ -119,6 +119,16 @@ view.file-icon {
   padding: 15px 0 50px 15px;
 }
 
+.addressBtn{
+  color:rgba(0, 0, 0, 0.6);
+  background-color:rgb(255, 255, 255);
+  font-size: 14px;
+}
+
+.addressBtn::after{
+border: none;
+}
+
 button.weui-btn {
   padding: 20rpx 0;
   color: #fff;

@@ -2,9 +2,11 @@ package com.law.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.law.annotation.EnumField;
+import com.law.entity.LawFileRecord;
 
 public class OrderPO extends LawOrder {
 
@@ -26,6 +28,62 @@ public class OrderPO extends LawOrder {
 
 	private String partyPersonName;// 当事人名称
 	private String feedbackOpinion;
+
+	private String analysisResult;
+	private Double quoteA;
+	private Double quoteB;
+	private Double quoteC;
+
+	private String termsType;
+	private List<LawFileRecord> lawFileList;
+
+	public List<LawFileRecord> getLawFileList() {
+		return lawFileList;
+	}
+
+	public void setLawFileList(List<LawFileRecord> lawFileList) {
+		this.lawFileList = lawFileList;
+	}
+
+	public String getTermsType() {
+		return termsType;
+	}
+
+	public void setTermsType(String termsType) {
+		this.termsType = termsType;
+	}
+
+	public String getAnalysisResult() {
+		return analysisResult;
+	}
+
+	public void setAnalysisResult(String analysisResult) {
+		this.analysisResult = analysisResult;
+	}
+
+	public Double getQuoteA() {
+		return quoteA;
+	}
+
+	public void setQuoteA(Double quoteA) {
+		this.quoteA = quoteA;
+	}
+
+	public Double getQuoteB() {
+		return quoteB;
+	}
+
+	public void setQuoteB(Double quoteB) {
+		this.quoteB = quoteB;
+	}
+
+	public Double getQuoteC() {
+		return quoteC;
+	}
+
+	public void setQuoteC(Double quoteC) {
+		this.quoteC = quoteC;
+	}
 
 	public String getFeedbackOpinion() {
 		return feedbackOpinion;

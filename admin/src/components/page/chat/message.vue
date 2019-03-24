@@ -19,7 +19,7 @@ export default {
         // 发送消息后滚动到底部
         'scroll-bottom' (e) {
             e.scrollTop = e.scrollHeight - e.clientHeight;
-            debugger;
+        
             //  this.vm.$nextTick(() => {
             //      this.el.scrollTop = this.el.scrollHeight - this.el.clientHeight;
             //  });

@@ -18,11 +18,11 @@ const formatNumber = n => {
 const getAge = function (identityCard) {
   var len = (identityCard + "").length;
   if (len == 0) {
-    return 0;
+    return "";
   } else {
     if ((len != 15) && (len != 18))//身份证号码只能为15位或18位其它不合法
     {
-      return 0;
+      return "";
     }
   }
   var strBirthday = "";

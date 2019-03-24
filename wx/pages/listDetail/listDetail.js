@@ -30,7 +30,7 @@ Page({
     currentFile: '',
     startTime: '',            //开始时间
     endTime: '',              //结束时间
-    place: '',                //地点
+    place: '北京市，北京市，东城区',                //地点
     happen: '',               //案件详情
     involvingMoney: '0',      //涉及钱财
     possessions: '',          //财物
@@ -60,7 +60,15 @@ Page({
       name: '',
       value: 1,
       checked: false
-    }]
+    }],
+    multiArray: [],
+    multiIndex: [0, 0, 0],
+    provinces:""
+  }, lifetimes: {
+    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+    attached: function () {
+      this.getCityInfo()
+    }
   },
   collapseToggle: function (e) {
     var obj = {};
@@ -105,6 +113,7 @@ Page({
         openId: wx.getStorageSync('openId')
       })
     }
+    this.getCityInfo();
   },
   inputEvent: function (e) {
     
@@ -112,7 +121,10 @@ Page({
     obj[e.currentTarget.dataset.key] = e.detail.value;
     this.setData(obj);
   },
-  bindDateChange: function (e) {
+  setPlace: function(e){
+    
+  }
+  ,bindDateChange: function (e) {
     var obj = {};
     obj[e.target.dataset.key] = e.detail.value;
     this.setData(obj)
@@ -361,5 +373,92 @@ Page({
         }
       })
     }
+  },
+  getCityInfo: function () {
+    //debugger;
+     wx.showLoading({
+       title: 'Loading...',
+     })
+    //因为数据库只存有一个总的数据字典，所以指定它的ID直接获取数据
+    var that = this;
+  
+    wx.request({
+      url: app.globalData.url + 'getCityInfo',
+      header: { 'Content-Type': 'application/json' },
+      data: {},
+      method: 'POST',
+      success: function (res) {
+        wx.hideLoading();
+       
+        if (res.data) {
+    
+          var temp = res.data.data;
+          //初始化更新数据
+          that.setData({
+            provinces: temp,
+            multiArray: [temp, temp[0].citys, temp[0].citys[0].areas],
+            multiIndex: [0, 0, 0]
+          })
+     
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '系统异常！',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    })
+   
+  },
+  //点击确定
+  bindMultiPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var placel = this.data.multiArray[0][this.data.multiIndex[0]].name;
+    var place2 = this.data.multiArray[1].length > 0 ? ('，' + this.data.multiArray[1][this.data.multiIndex[1]].name) : '';
+    var place3 = this.data.multiArray[2].length > 0 ? ('，' + this.data.multiArray[2][this.data.multiIndex[2]].name) : '';
+    this.setData({
+      multiIndex: e.detail.value,
+      place: placel + place2 + place3
+    })
+    console.log(this.data.place)
+  },
+  //滑动
+  bindMultiPickerColumnChange: function (e) {
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    //更新滑动的第几列e.detail.column的数组下标值e.detail.value
+    data.multiIndex[e.detail.column] = e.detail.value;
+    //如果更新的是第一列“省”，第二列“市”和第三列“区”的数组下标置为0
+    if (e.detail.column == 0) {
+      data.multiIndex = [e.detail.value, 0, 0];
+    } else if (e.detail.column == 1) {
+      //如果更新的是第二列“市”，第一列“省”的下标不变，第三列“区”的数组下标置为0
+      data.multiIndex = [data.multiIndex[0], e.detail.value, 0];
+    } else if (e.detail.column == 2) {
+      //如果更新的是第三列“区”，第一列“省”和第二列“市”的值均不变。
+      data.multiIndex = [data.multiIndex[0], data.multiIndex[1], e.detail.value];
+    }
+    var temp = this.data.provinces;
+    data.multiArray[0] = temp;
+    if ((temp[data.multiIndex[0]].citys).length > 0) {
+      //如果第二列“市”的个数大于0,通过multiIndex变更multiArray[1]的值
+      data.multiArray[1] = temp[data.multiIndex[0]].citys;
+      var areaArr = (temp[data.multiIndex[0]].citys[data.multiIndex[1]]).areas;
+      //如果第三列“区”的个数大于0,通过multiIndex变更multiArray[2]的值；否则赋值为空数组
+      data.multiArray[2] = areaArr.length > 0 ? areaArr : [];
+    } else {
+      //如果第二列“市”的个数不大于0，那么第二列“市”和第三列“区”都赋值为空数组
+      data.multiArray[1] = [];
+      data.multiArray[2] = [];
+    }
+   
+    //setData更新数据
+    this.setData(data);
   }
+
 })

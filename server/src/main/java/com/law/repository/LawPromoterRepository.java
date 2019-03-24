@@ -23,4 +23,6 @@ public interface LawPromoterRepository extends JpaRepository<LawPromoter, Intege
 	public LawPromoter findByOpenIdAndStatus(String openId, String u);
 
 	public LawPromoter findByPromoterId(int parentPromoterId);
+
+	public LawPromoter findByOpenId(String openId);
 }

@@ -20,6 +20,9 @@ public class LawPromoterService {
 	public LawPromoter findByOpenIdAndStatus(String openId, String u) {
 		return lawPromoterRepository.findByOpenIdAndStatus(openId, u);
 	}
+	public LawPromoter findByOpenId(String openId) {
+		return lawPromoterRepository.findByOpenId(openId);
+	}
 
 	public LawPromoter findByPromoterId(int parentPromoterId) {
 		return lawPromoterRepository.findByPromoterId(parentPromoterId);

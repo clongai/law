@@ -10,12 +10,30 @@ export default {
     components: { Card, List, TextSend, Message },
     vuex: {
         actions: actions
+    },data () {
+        return {
+           count: 1
+        };
     },
     created () {
+        this.getDate();
         this.initData();
+         setInterval(this.timer, 5000);
+      },methods:{
+        getDate(){
+            this.$axios.post('/api/getChatData', {
+                    lawOrder: this.refuseform
+                }).then((res) => {
+                    console.log(res.data)
+                  this.$store.state.sessions = res.data;
+                })
+        },timer () {
+            this.getDate()
+        }
     }
 }
 </script>
+
 
 <template>
 <div id="app">

@@ -18,319 +18,309 @@ import com.law.annotation.EnumField;
 @Entity
 @Table(name = "law_order", schema = "law", catalog = "")
 public class LawOrder {
-  private String acceptAddress;
-  private String acceptContracts;
-  private Timestamp acceptDate;
-  private String acceptPhone;
-  private String acceptRemark;
-  private String appeal;
-  private String doneCode;
-  private Timestamp doneDate;
-  private String endTime;
-  private String files;
-  private String happen;
-  private BigDecimal involvingMoney;
-  private BigDecimal agentMoney;
-  private String openId;
-  private Integer orderId;
-  private String photos;
-  private String place;
-  private String possessions;
-  private String refuseReason;
-  private String startTime;
-  private String status;
-  private String videos;
-  private Integer serviceId;
-  private String caseBaseLevel;
-  private String caseSubLevel;
+	private String acceptAddress;
+	private String acceptContracts;
+	private Timestamp acceptDate;
+	private String acceptPhone;
+	private String acceptRemark;
+	private String appeal;
+	private String doneCode;
+	private Timestamp doneDate;
+	private String endTime;
+	private String files;
+	private String happen;
+	private BigDecimal involvingMoney;
+	private BigDecimal agentMoney;
+	private String openId;
+	private Integer orderId;
+	private String photos;
+	private String place;
+	private String possessions;
+	private String refuseReason;
+	private String startTime;
+	private String status;
+	private String videos;
+	private Integer serviceId;
+	private String caseBaseLevel;
+	private String caseSubLevel;
+	private String termsType;
 
-@Basic
-  @Column(name = "accept_address", nullable = true, length = 255)
-  public String getAcceptAddress() {
-    return acceptAddress;
-  }
+	@Column(name = "terms_type")
+	public String getTermsType() {
+		return termsType;
+	}
 
-  public void setAcceptAddress(String acceptAddress) {
-    this.acceptAddress = acceptAddress;
-  }
+	public void setTermsType(String termsType) {
+		this.termsType = termsType;
+	}
 
-  @Basic
-  @Column(name = "accept_contracts", nullable = true, length = 255)
-  public String getAcceptContracts() {
-    return acceptContracts;
-  }
+	@Basic
+	@Column(name = "accept_address", nullable = true, length = 255)
+	public String getAcceptAddress() {
+		return acceptAddress;
+	}
 
-  public void setAcceptContracts(String acceptContracts) {
-    this.acceptContracts = acceptContracts;
-  }
 
-  @Basic
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-  @Column(name = "accept_date", nullable = true)
-  public Timestamp getAcceptDate() {
-    return acceptDate;
-  }
+	public void setAcceptAddress(String acceptAddress) {
+		this.acceptAddress = acceptAddress;
+	}
 
-  public void setAcceptDate(Timestamp acceptDate) {
-    this.acceptDate = acceptDate;
-  }
+	@Basic
+	@Column(name = "accept_contracts", nullable = true, length = 255)
+	public String getAcceptContracts() {
+		return acceptContracts;
+	}
 
-  @Basic
-  @Column(name = "accept_phone", nullable = true, length = 255)
-  public String getAcceptPhone() {
-    return acceptPhone;
-  }
+	public void setAcceptContracts(String acceptContracts) {
+		this.acceptContracts = acceptContracts;
+	}
 
-  public void setAcceptPhone(String acceptPhone) {
-    this.acceptPhone = acceptPhone;
-  }
+	@Basic
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@Column(name = "accept_date", nullable = true)
+	public Timestamp getAcceptDate() {
+		return acceptDate;
+	}
 
-  @Basic
-  @Column(name = "accept_remark", nullable = true, length = 4000)
-  public String getAcceptRemark() {
-    return acceptRemark;
-  }
+	public void setAcceptDate(Timestamp acceptDate) {
+		this.acceptDate = acceptDate;
+	}
 
-  public void setAcceptRemark(String acceptRemark) {
-    this.acceptRemark = acceptRemark;
-  }
+	@Basic
+	@Column(name = "accept_phone", nullable = true, length = 255)
+	public String getAcceptPhone() {
+		return acceptPhone;
+	}
 
-  @Basic
-  @Column(name = "appeal", nullable = true, length = 2000)
-  public String getAppeal() {
-    return appeal;
-  }
+	public void setAcceptPhone(String acceptPhone) {
+		this.acceptPhone = acceptPhone;
+	}
 
-  public void setAppeal(String appeal) {
-    this.appeal = appeal;
-  }
+	@Basic
+	@Column(name = "accept_remark", nullable = true, length = 4000)
+	public String getAcceptRemark() {
+		return acceptRemark;
+	}
 
-  @Basic
-  @Column(name = "done_code", nullable = true, length = 50)
-  public String getDoneCode() {
-    return doneCode;
-  }
+	public void setAcceptRemark(String acceptRemark) {
+		this.acceptRemark = acceptRemark;
+	}
 
-  public void setDoneCode(String doneCode) {
-    this.doneCode = doneCode;
-  }
+	@Basic
+	@Column(name = "appeal", nullable = true, length = 2000)
+	public String getAppeal() {
+		return appeal;
+	}
 
-  @Basic
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-  @Column(name = "done_date", nullable = true)
-  public Timestamp getDoneDate() {
-    return doneDate;
-  }
+	public void setAppeal(String appeal) {
+		this.appeal = appeal;
+	}
 
-  public void setDoneDate(Timestamp doneDate) {
-    this.doneDate = doneDate;
-  }
+	@Basic
+	@Column(name = "done_code", nullable = true, length = 50)
+	public String getDoneCode() {
+		return doneCode;
+	}
 
-  @Basic
-  @Column(name = "end_time", nullable = true, length = 20)
-  public String getEndTime() {
-    return endTime;
-  }
+	public void setDoneCode(String doneCode) {
+		this.doneCode = doneCode;
+	}
 
-  public void setEndTime(String endTime) {
-    this.endTime = endTime;
-  }
+	@Basic
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@Column(name = "done_date", nullable = true)
+	public Timestamp getDoneDate() {
+		return doneDate;
+	}
 
-  @Basic
-  @Column(name = "files", nullable = true, length = 255)
-  public String getFiles() {
-    return files;
-  }
+	public void setDoneDate(Timestamp doneDate) {
+		this.doneDate = doneDate;
+	}
 
-  public void setFiles(String files) {
-    this.files = files;
-  }
+	@Basic
+	@Column(name = "end_time", nullable = true, length = 20)
+	public String getEndTime() {
+		return endTime;
+	}
 
-  @Basic
-  @Column(name = "happen", nullable = true, length = 4000)
-  public String getHappen() {
-    return happen;
-  }
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 
-  public void setHappen(String happen) {
-    this.happen = happen;
-  }
+	@Basic
+	@Column(name = "files", nullable = true, length = 255)
+	public String getFiles() {
+		return files;
+	}
 
-  @Basic
-  @Column(name = "involving_money", nullable = true)
-  public BigDecimal getInvolvingMoney() {
-    return involvingMoney;
-  }
+	public void setFiles(String files) {
+		this.files = files;
+	}
 
-  public void setInvolvingMoney(BigDecimal involvingMoney) {
-    this.involvingMoney = involvingMoney;
-  }
-  
-  
-  @Basic
-  @Column(name = "agent_money", nullable = true)
-  public BigDecimal getAgentMoney() {
-	return agentMoney;
-  }
+	@Basic
+	@Column(name = "happen", nullable = true, length = 4000)
+	public String getHappen() {
+		return happen;
+	}
 
-public void setAgentMoney(BigDecimal agentMoney) {
-	this.agentMoney = agentMoney;
-}
+	public void setHappen(String happen) {
+		this.happen = happen;
+	}
 
-@Basic
-  @Column(name = "open_id", nullable = true, length = 255)
-  public String getOpenId() {
-    return openId;
-  }
+	@Basic
+	@Column(name = "involving_money", nullable = true)
+	public BigDecimal getInvolvingMoney() {
+		return involvingMoney;
+	}
 
-  public void setOpenId(String openId) {
-    this.openId = openId;
-  }
+	public void setInvolvingMoney(BigDecimal involvingMoney) {
+		this.involvingMoney = involvingMoney;
+	}
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "order_id", nullable = false)
-  public Integer getOrderId() {
-    return orderId;
-  }
+	@Basic
+	@Column(name = "agent_money", nullable = true)
+	public BigDecimal getAgentMoney() {
+		return agentMoney;
+	}
 
-  public void setOrderId(Integer orderId) {
-    this.orderId = orderId;
-  }
+	public void setAgentMoney(BigDecimal agentMoney) {
+		this.agentMoney = agentMoney;
+	}
 
-  @Basic
-  @Column(name = "photos", nullable = true, length = 255)
-  public String getPhotos() {
-    return photos;
-  }
+	@Basic
+	@Column(name = "open_id", nullable = true, length = 255)
+	public String getOpenId() {
+		return openId;
+	}
 
-  public void setPhotos(String photos) {
-    this.photos = photos;
-  }
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
 
-  @Basic
-  @Column(name = "place", nullable = true, length = 255)
-  public String getPlace() {
-    return place;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_id", nullable = false)
+	public Integer getOrderId() {
+		return orderId;
+	}
 
-  public void setPlace(String place) {
-    this.place = place;
-  }
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
 
-  @Basic
-  @Column(name = "possessions", nullable = true, length = 4000)
-  public String getPossessions() {
-    return possessions;
-  }
+	@Basic
+	@Column(name = "photos", nullable = true, length = 255)
+	public String getPhotos() {
+		return photos;
+	}
 
-  public void setPossessions(String possessions) {
-    this.possessions = possessions;
-  }
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
 
-  @Basic
-  @Column(name = "refuse_reason", nullable = true, length = 255)
-  public String getRefuseReason() {
-    return refuseReason;
-  }
+	@Basic
+	@Column(name = "place", nullable = true, length = 255)
+	public String getPlace() {
+		return place;
+	}
 
-  public void setRefuseReason(String refuseReason) {
-    this.refuseReason = refuseReason;
-  }
+	public void setPlace(String place) {
+		this.place = place;
+	}
 
-  @Basic
-  @Column(name = "start_time", nullable = true, length = 20)
-  public String getStartTime() {
-    return startTime;
-  }
+	@Basic
+	@Column(name = "possessions", nullable = true, length = 4000)
+	public String getPossessions() {
+		return possessions;
+	}
 
-  public void setStartTime(String startTime) {
-    this.startTime = startTime;
-  }
+	public void setPossessions(String possessions) {
+		this.possessions = possessions;
+	}
 
-  @Basic
-  @Column(name = "status", nullable = true, length = 50)
-  public String getStatus() {
-    return status;
-  }
+	@Basic
+	@Column(name = "refuse_reason", nullable = true, length = 255)
+	public String getRefuseReason() {
+		return refuseReason;
+	}
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+	public void setRefuseReason(String refuseReason) {
+		this.refuseReason = refuseReason;
+	}
 
-  @Basic
-  @Column(name = "videos", nullable = true, length = 255)
-  public String getVideos() {
-    return videos;
-  }
+	@Basic
+	@Column(name = "start_time", nullable = true, length = 20)
+	public String getStartTime() {
+		return startTime;
+	}
 
-  public void setVideos(String videos) {
-    this.videos = videos;
-  }
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
 
-  @Basic
-  @Column(name = "service_id", nullable = true)
-  public Integer getServiceId() {
-    return serviceId;
-  }
+	@Basic
+	@Column(name = "status", nullable = true, length = 50)
+	public String getStatus() {
+		return status;
+	}
 
-  public void setServiceId(Integer serviceId) {
-    this.serviceId = serviceId;
-  }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-  @Basic
-  @Column(name = "case_baselevel", nullable = true)
-  public String getCaseBaseLevel() {
-    return caseBaseLevel;
-  }
+	@Basic
+	@Column(name = "videos", nullable = true, length = 255)
+	public String getVideos() {
+		return videos;
+	}
 
-  public void setCaseBaseLevel(String caseBaseLevel) {
-    this.caseBaseLevel = caseBaseLevel;
-  }
+	public void setVideos(String videos) {
+		this.videos = videos;
+	}
 
-  @Basic
-  @Column(name = "case_sublevel", nullable = true)
-  public String getCaseSubLevel() {
-    return caseSubLevel;
-  }
+	@Basic
+	@Column(name = "service_id", nullable = true)
+	public Integer getServiceId() {
+		return serviceId;
+	}
 
-  public void setCaseSubLevel(String caseSubLevel) {
-    this.caseSubLevel = caseSubLevel;
-  }
+	public void setServiceId(Integer serviceId) {
+		this.serviceId = serviceId;
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(orderId, doneCode, doneDate, startTime, endTime, place, happen, involvingMoney, possessions, appeal, photos, videos, files, openId, status, acceptDate, acceptContracts, acceptPhone, acceptAddress, acceptRemark, refuseReason, serviceId, caseBaseLevel, caseSubLevel);
-  }
+	@Basic
+	@Column(name = "case_baselevel", nullable = true)
+	public String getCaseBaseLevel() {
+		return caseBaseLevel;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    LawOrder lawOrder = (LawOrder) o;
-    return orderId == lawOrder.orderId &&
-            Objects.equals(doneCode, lawOrder.doneCode) &&
-            Objects.equals(doneDate, lawOrder.doneDate) &&
-            Objects.equals(startTime, lawOrder.startTime) &&
-            Objects.equals(endTime, lawOrder.endTime) &&
-            Objects.equals(place, lawOrder.place) &&
-            Objects.equals(happen, lawOrder.happen) &&
-            Objects.equals(involvingMoney, lawOrder.involvingMoney) &&
-            Objects.equals(possessions, lawOrder.possessions) &&
-            Objects.equals(appeal, lawOrder.appeal) &&
-            Objects.equals(photos, lawOrder.photos) &&
-            Objects.equals(videos, lawOrder.videos) &&
-            Objects.equals(files, lawOrder.files) &&
-            Objects.equals(openId, lawOrder.openId) &&
-            Objects.equals(status, lawOrder.status) &&
-            Objects.equals(acceptDate, lawOrder.acceptDate) &&
-            Objects.equals(acceptContracts, lawOrder.acceptContracts) &&
-            Objects.equals(acceptPhone, lawOrder.acceptPhone) &&
-            Objects.equals(acceptAddress, lawOrder.acceptAddress) &&
-            Objects.equals(acceptRemark, lawOrder.acceptRemark) &&
-            Objects.equals(refuseReason, lawOrder.refuseReason) &&
-            Objects.equals(serviceId, lawOrder.serviceId) &&
-            Objects.equals(caseBaseLevel, lawOrder.caseBaseLevel) &&
-            Objects.equals(caseSubLevel, lawOrder.caseSubLevel);
-  }
+	public void setCaseBaseLevel(String caseBaseLevel) {
+		this.caseBaseLevel = caseBaseLevel;
+	}
+
+	@Basic
+	@Column(name = "case_sublevel", nullable = true)
+	public String getCaseSubLevel() {
+		return caseSubLevel;
+	}
+
+	public void setCaseSubLevel(String caseSubLevel) {
+		this.caseSubLevel = caseSubLevel;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(orderId, doneCode, doneDate, startTime, endTime, place, happen, involvingMoney, possessions, appeal, photos, videos, files, openId, status, acceptDate, acceptContracts, acceptPhone, acceptAddress, acceptRemark, refuseReason, serviceId, caseBaseLevel, caseSubLevel);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		LawOrder lawOrder = (LawOrder) o;
+		return orderId == lawOrder.orderId && Objects.equals(doneCode, lawOrder.doneCode) && Objects.equals(doneDate, lawOrder.doneDate) && Objects.equals(startTime, lawOrder.startTime) && Objects.equals(endTime, lawOrder.endTime) && Objects.equals(place, lawOrder.place) && Objects.equals(happen, lawOrder.happen) && Objects.equals(involvingMoney, lawOrder.involvingMoney) && Objects.equals(possessions, lawOrder.possessions) && Objects.equals(appeal, lawOrder.appeal) && Objects.equals(photos, lawOrder.photos) && Objects.equals(videos, lawOrder.videos) && Objects.equals(files, lawOrder.files) && Objects.equals(openId, lawOrder.openId) && Objects.equals(status, lawOrder.status) && Objects.equals(acceptDate, lawOrder.acceptDate) && Objects.equals(acceptContracts, lawOrder.acceptContracts) && Objects.equals(acceptPhone, lawOrder.acceptPhone) && Objects.equals(acceptAddress, lawOrder.acceptAddress) && Objects.equals(acceptRemark, lawOrder.acceptRemark)
+				&& Objects.equals(refuseReason, lawOrder.refuseReason) && Objects.equals(serviceId, lawOrder.serviceId) && Objects.equals(caseBaseLevel, lawOrder.caseBaseLevel) && Objects.equals(caseSubLevel, lawOrder.caseSubLevel);
+	}
 }

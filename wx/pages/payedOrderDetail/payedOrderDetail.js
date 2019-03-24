@@ -17,8 +17,9 @@ Page({
     prepare: 'XXXXX,XXXX',
     meetTime: '',
     contactPeople: '王晓明',
-    contactPhone: '13811111111',
-    payedPngBase64: ''
+    contactPhone: '13863255322',
+    payedPngBase64: '',
+    lawFileList:''
   },
 
   /**
@@ -45,9 +46,11 @@ Page({
       header: { 'Content-Type': 'application/json' },
       method: 'POST',
       success: res => {
+       
         this.setData({
           orderOp: res.data,
-          meetTime: res.data.acceptStartTime
+          meetTime: res.data.acceptStartTime,
+          lawFileList: res.data.lawFileList
         })
       }
     })
@@ -85,6 +88,29 @@ Page({
   orderDetail: function () {
     wx.navigateTo({
       url: '../orderDetail/orderDetail?orderId=' + this.data.orderId + '&status=' + this.data.status,
+    })
+  },
+  lookLawBook: function(e){
+    console.log(e.currentTarget.dataset)
+    var filename = e.currentTarget.dataset.filename;
+    var fileType = filename.substr(filename.indexOf(".")+1);
+    wx.downloadFile({
+      url: app.globalData.url + 'downloadFile?fileId=' + e.currentTarget.dataset.fileid,
+      success: function (res) {
+        console.log(res)
+        var Path = res.tempFilePath              //返回的文件临时地址，用于后面打开本地预览所用
+        wx.openDocument({
+          filePath: Path,
+          fileType: fileType,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      },
+      fail: function (res) {
+        console.log('打开文档shibei')
+        console.log(res)
+      }
     })
   }
 })

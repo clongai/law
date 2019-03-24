@@ -220,6 +220,41 @@
                         <div class="grid-content bg-purple">&nbsp;{{order.feedbackOpinion}}</div>
                     </el-col>
                 </el-row>
+                 <el-row :gutter="20">
+                    <el-col :span="24">
+                        <div class="grid-content">法务处理意见</div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple">&nbsp;{{order.analysisResult}}</div>
+                    </el-col>
+                </el-row>
+                 <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="grid-content">提供法律文书，当事人自行处理报价</div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="grid-content">提供法律文书，全程跟踪指导报价</div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="grid-content">与山东聚青签署委托代理协议报价</div>
+                    </el-col>
+                    
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="grid-content bg-purple">&nbsp;{{order.quoteA}}</div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="grid-content bg-purple">&nbsp;{{order.quoteB}}</div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="grid-content bg-purple">&nbsp;{{order.quoteC}}</div>
+                    </el-col>
+                    
+                </el-row>
+                
             </el-card>
 
             
@@ -264,7 +299,7 @@
             </el-card>
             <el-card v-if="order.status == '5' && orginazation == '2' " class="box-card" shadow="never">
                 <div slot="header" class="clearfix card_header">
-                    <span>上传诉状书</span>
+                    <span>上传法律文书(支持pdf、docx)</span>
                 </div>
                 <el-card v-for="(item,index) in fileByOrderId" >
                 <el-row :gutter="20">
@@ -356,12 +391,21 @@
         </el-dialog>
 
         <el-dialog title="输入代理金额" :visible.sync="inputAgentMoneyVisible" width="50%">
-            <el-form ref="inputAgentMoneyForm" :model="inputAgentMoneyForm" :rules="rules" label-width="100px">
+            <el-form ref="inputAgentMoneyForm" :model="inputAgentMoneyForm" :rules="rules" label-width="200px">
                 <el-form-item label="编号">
                     <el-input v-model="inputAgentMoneyForm.orderId" :disabled="true"></el-input>
                 </el-form-item>
-                <el-form-item  prop="agentMoney" label="代理金额">
+                <!-- <el-form-item  prop="agentMoney" label="代理金额">
                     <el-input-number v-model="inputAgentMoneyForm.agentMoney" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item> -->
+                <el-form-item  prop="quoteA" label="A:提供法律文书，当事人自行处理代理金额">
+                    <el-input-number v-model="inputAgentMoneyForm.quoteA" :precision="2" :step="0.01"  :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item>
+                <el-form-item  prop="quoteB" label="B:提供法律文书，全程跟踪指导代理金额">
+                    <el-input-number v-model="inputAgentMoneyForm.quoteB" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item>
+                <el-form-item  prop="quoteC" label="C:与山东聚青签署委托代理协议代理金额">
+                    <el-input-number v-model="inputAgentMoneyForm.quoteC" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
                 </el-form-item>
                 
             </el-form>
@@ -455,7 +499,7 @@
 
 
         <el-dialog title="请补充面谈信息" :visible.sync="lawWorkAcceptVisible"  width="50%">
-            <el-form ref="lawWorkAcceptForm" :model="lawWorkAcceptForm" :rules="rules" label-width="120px">
+            <el-form ref="lawWorkAcceptForm" :model="lawWorkAcceptForm" :rules="rules" label-width="240px">
                 <el-form-item label="编号">
                     <el-input v-model="lawWorkAcceptForm.orderId" :disabled="true"></el-input>
                 </el-form-item>
@@ -487,7 +531,18 @@
                 <el-form-item v-if="orginazation == '2'" prop="caseSubLevel" label="案由小类">  
                     <el-autocomplete v-model="lawWorkAcceptForm.caseSubLevel" :fetch-suggestions="querySearchSubCaseAsync" :debounce=0  @select="subCaseSelected" style="width: 100%;"></el-autocomplete>
                 </el-form-item> 
-              
+              <el-form-item label="分析结果">
+                     <el-input type="textarea" v-model="lawWorkAcceptForm.analysisResult"></el-input>
+                </el-form-item>
+                <el-form-item v-if="orginazation == '2'" prop="quoteA" label="A:提供法律文书，当事人自行处理报价">
+                    <el-input-number v-model="lawWorkAcceptForm.quoteA" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item>
+                <el-form-item v-if="orginazation == '2'" prop="quoteB" label="B:提供法律文书，全程跟踪指导报价">
+                    <el-input-number v-model="lawWorkAcceptForm.quoteB" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item>
+                <el-form-item v-if="orginazation == '2'" prop="quoteC" label="C:与山东聚青签署委托代理协议报价">
+                    <el-input-number v-model="lawWorkAcceptForm.quoteC" :precision="2" :step="0.01" :max="99999999999999" style="width: 100%"></el-input-number>
+                </el-form-item>
                <el-form-item label="材料清单">
                      <el-input type="textarea" v-model="lawWorkAcceptForm.fileList"></el-input>
                 </el-form-item>
@@ -572,7 +627,10 @@
                 },
                 inputAgentMoneyForm:{
                      orderId: '',
-                     agentMoney:''
+                     agentMoney:'',
+                     quoteA:'',
+                     quoteB:'',
+                     quoteC:''
                 },
                 refuseform: {
                     orderId: '',
@@ -585,7 +643,11 @@
                     faceSelected: '',
                     involvingMoney: '',
                     caseBaseLevel: '',
-                    caseSubLevel: ''
+                    caseSubLevel: '',
+                    analysisResult:'',
+                    quoteA:'',
+                    quoteB:'',
+                    quoteC:''
                 },
                 feedbackOpinionForm:{
                     orderId: '',
@@ -598,7 +660,11 @@
                     acceptContracts :[{required: true, message: '联系人'}],
                     acceptPhone :[{required: true, message: '联系电话'}],
                     acceptAddress :[{required: true, message: '联系地址'}],
-                    acceptDate :[{required: true, message: '面谈时间'}]
+                    acceptDate :[{required: true, message: '面谈时间'}],
+                    quoteA :[{required: true, message: '请输入A报价金额', trigger: 'change'}],
+                    quoteB :[{required: true, message: '请输入B报价金额', trigger: 'change'}],
+                    quoteC :[{required: true, message: '请输入C报价金额', trigger: 'change'}],
+                    analysisResult :[{required: true, message: '请输入分析结果', trigger: 'change'}]
                 },
                 fileByOrderId:''
             }
@@ -621,6 +687,7 @@
             getData() {
                 this.$axios.post('/api/getLawOrder', {
                     orderId: this.orderId,
+                    orginazation: this.orginazation
                 }).then((res) => {
                     
                     this.order = res.data.orderPO
@@ -704,6 +771,20 @@
                 
                 if(acceptform=="inputAgentMoneyForm"){
                     lawOrder = this.inputAgentMoneyForm;
+                      
+                      if(lawOrder.quoteA<Math.floor(((this.order.quoteA/0.2)*0.03))){
+                            alert("A条款报价不能低于"+Math.floor(((this.order.quoteA/0.2)*0.03)));
+                            return;
+                      }
+                      if(lawOrder.quoteB<Math.floor(((this.order.quoteB/0.2)*0.03))){
+                            alert("B条款报价不能低于"+Math.floor(((this.order.quoteB/0.2)*0.03)));
+                            return;
+                      }
+                      if(lawOrder.quoteC<Math.floor(((this.order.quoteC/0.2)*0.03))){
+                            alert("C条款报价不能低于"+Math.floor(((this.order.quoteC/0.2)*0.03)));
+                            return;
+                      }
+                  
                 }
                 
                 if(acceptform=="lawWorkAcceptForm"){
