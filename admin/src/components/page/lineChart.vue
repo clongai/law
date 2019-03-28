@@ -59,12 +59,39 @@
     mounted () {
       const _this = this;
       // 基于准备好的dom，初始化echarts实例
+     
+      
+   
+      this.$axios.post('/api/getStatisticsData',{
+          type: _this.id
+      }).then((res) =>{ 
+        //debugger;
+        this.total=res.data.total;
+        this.current = res.data.current;
+        this.realData = res.data.data;
+        this.createChartOption();
+      })
+  
+     
+    },
+    data () {
+      return {
+        total: "26,238",
+        current: '3201',
+        xAxisData: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        realData: [],
+        yMax: 0
+      }
+    },methods:{
+      createChartOption(){
+        const _this = this;
       let myChart = echarts.init(document.getElementById(_this.id));
       for (let i = 0; i < this.realData.length; i++) {
         if (this.yMax < this.realData[i]) {
           this.yMax = this.realData[i]
         }
       }
+     
       const option = {
         grid: {
           top: 20,
@@ -153,14 +180,6 @@
 
       // 绘制图表
       myChart.setOption(option);
-    },
-    data () {
-      return {
-        total: "26,238",
-        current: '3201',
-        xAxisData: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        realData: [520, 532, 601, 734, 890, 930, 1020, 1180, 1225, 1277, 1300, 1382, 1889],
-        yMax: 0
       }
     }
   }

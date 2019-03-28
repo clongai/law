@@ -18,13 +18,14 @@
                     </div>
                 </div>
                 <div class="echarts-item">
-                    <div>
+                    <div> 
                         <lineChart
                             :color="incomeColor"
                             :id="incomeId"
                             :title="incomeTitle"
                             :y-unit="incomeYUnit"
                             :x-unit="incomeXUnit"
+                            :realData="incomeYData"
                             :url="incomeUrl"></lineChart>
                     </div>
                 </div>
@@ -35,6 +36,7 @@
                         :title="orderTitle"
                         :y-unit="orderYUnit"
                         :x-unit="orderXUnit"
+                        :realData="orderYData"
                         :url="orderUrl"></lineChart>
                 </div>
             </div>
@@ -174,7 +176,7 @@
     export default {
         name: "boss-view",
         mounted() {
-
+            this.getBaseInfo();
         },
         components: {
             lineChart
@@ -185,17 +187,19 @@
                 totalPeople: '26,238',
                 involvedNum: '2,226,238',
                 incomeColor: ['#b2d8ed', '#0778ca'],
-                incomeId: "echarts1",
+                incomeId: "income",
                 incomeTitle: "收入",
                 incomeUrl: "",
                 incomeYUnit: "元",
                 incomeXUnit: "月",
+                incomeYData:[],
                 orderColor: ['#f7e2bc', 'orange'],
-                orderId: "echarts2",
+                orderId: "order",
                 orderTitle: "成单",
                 orderUrl: "",
                 orderYUnit: "元",
                 orderXUnit: "月",
+                orderYData:[],
                 date: '',
                 filterName: '',
                 superiorName: '',
@@ -216,6 +220,15 @@
             }
         },
         methods: {
+            getBaseInfo(val) {
+                this.$axios.post('/api/getStatisticsData',{
+                    type: 0
+                }).then((res) =>{ 
+                    //debugger;
+                    this.totalPeople=res.data.totalPeople;
+                    this.involvedNum = res.data.involvedNum;
+                })
+            },
             handleSelectionChange(val) {
                 this.currentRow = val;
                 this.tableRadio = val.id;

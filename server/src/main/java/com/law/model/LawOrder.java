@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.law.annotation.EnumField;
 
 @Entity
 @Table(name = "law_order", schema = "law", catalog = "")
@@ -44,6 +43,17 @@ public class LawOrder {
 	private String caseBaseLevel;
 	private String caseSubLevel;
 	private String termsType;
+	private Timestamp createTime;
+
+	@Column(name = "create_time")
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
 
 	@Column(name = "terms_type")
 	public String getTermsType() {
@@ -59,7 +69,6 @@ public class LawOrder {
 	public String getAcceptAddress() {
 		return acceptAddress;
 	}
-
 
 	public void setAcceptAddress(String acceptAddress) {
 		this.acceptAddress = acceptAddress;

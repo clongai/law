@@ -6,12 +6,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,6 +50,7 @@ import com.law.entity.LawFileRecord;
 import com.law.entity.LawOrderExt;
 import com.law.idworker.IdWorker;
 import com.law.model.Chat;
+import com.law.model.KeyValue;
 import com.law.model.Law;
 import com.law.model.LawCaseDropdownModel;
 import com.law.model.LawOrder;
@@ -57,10 +63,12 @@ import com.law.model.OrderPO;
 import com.law.model.User;
 import com.law.service.LawFileRecordService;
 import com.law.service.LawOrderExtService;
+import com.law.service.LawPayService;
 import com.law.service.LawPersonService;
 import com.law.service.LawPromoterService;
 import com.law.service.LawService;
 import com.law.util.FileUtil;
+import com.law.util.ListUtil;
 
 @RestController
 public class LawController {
@@ -86,6 +94,9 @@ public class LawController {
 
 	@Autowired
 	private LawFileRecordService lawFileRecordService;
+
+	@Autowired
+	private LawPayService lawPayService;
 
 	@PostMapping("/uploadFile")
 	public String uploadFile(@RequestParam("file") MultipartFile file) {
@@ -512,12 +523,87 @@ public class LawController {
 		return sessions;
 	}
 
-	
 	@RequestMapping("/getPromoter")
 	public LawPromoter getPromoter(@RequestBody String data) {
 		JSONObject json = JSONObject.parseObject(data);
 		String openId = json.getString("openId");
 		LawPromoter lawPromoter = lawPromoterService.findByOpenIdAndStatus(openId, TableStatusEnum.U.getCode());
 		return lawPromoter;
+	}
+
+	/**
+	 *获取总人数、涉案金额、
+	 *总收入趋势
+	 *		总收入
+	 *		本月收入
+	 *		0-12月收入分布
+	 *总成单趋势
+	 *		总成单
+	 *		本月成单
+	 *		0-12月总成单趋势
+	 * @return 
+	 */
+	@RequestMapping("/getStatisticsData")
+	public Map<String, Object> getStatisticsData(@RequestBody String data) {
+
+		Map<String, Object> returnMap = new HashMap<>();
+		JSONObject json = JSONObject.parseObject(data);
+		String type = json.getString("type");
+		if (type.equals("0")) {
+			//总人数
+			long totalPromoterNum = lawPromoterService.countByStatus(Constant.DATA_STATUS_OK);
+			//获取涉案金额
+			BigDecimal countInvolvingMoney = lawService.countInvolvingMoney();
+			returnMap.put("totalPeople", totalPromoterNum);
+			returnMap.put("involvedNum", countInvolvingMoney);
+			
+		}
+		if (type.equals("income")) {
+			//获取总收入趋势
+			BigDecimal sumFeePayOrder = lawPayService.sumFeePayOrder();
+			BigDecimal sumFeePayOrderByMonth = lawPayService.sumFeePayOrderByMonth();
+			List<KeyValue> sumFeePayOrderByMonthGrp = lawPayService.sumFeePayOrderByMonthGrp();
+			returnMap.put("total", sumFeePayOrder);
+			returnMap.put("current", sumFeePayOrderByMonth);
+			List<BigDecimal> collect = handleFillList(sumFeePayOrderByMonthGrp).stream().map(KeyValue::getMoney).collect(Collectors.toList());
+			returnMap.put("data", collect);
+		}
+
+		if (type.equals("order")) {
+			//获取总成单趋势
+			Long countPayOrder = lawPayService.countPayOrder();
+			Long countPayOrderByMonth = lawPayService.countPayOrderByMonth();
+			List<KeyValue> countPayOrderByMonthGrp = lawPayService.countPayOrderByMonthGrp();
+			returnMap.put("total", countPayOrder);
+			returnMap.put("current", countPayOrderByMonth);
+			List<BigInteger> collect = handleFillList(countPayOrderByMonthGrp).stream().map(KeyValue::getOrderNum).collect(Collectors.toList());
+			returnMap.put("data", collect);
+		}
+		
+		return returnMap;
+
+	}
+	
+	public List<KeyValue> handleFillList(List<KeyValue> list) {
+		if(ListUtil.isBlank(list)) list = new ArrayList<>();
+		List<String> collect = list.stream().map(KeyValue::getDonetiem).collect(Collectors.toList());
+		for(int i=1;i<13;i++) {
+			String str = i+"";
+			if(i<10)str = "0"+i;
+			if(!collect.contains(str)) {
+				list.add(new KeyValue(i+"",BigDecimal.valueOf(0),BigInteger.valueOf(0)));
+			}
+		}
+		return list.stream().sorted(Comparator.comparing(KeyValue::getDonetiem)).collect(Collectors.toList());
+	}
+
+	@RequestMapping("/statisticsTest")
+	public List<KeyValue> statisticsTest() {
+		List<KeyValue> sumFeePayOrderByMonthGrp = lawPayService.countPayOrderByMonthGrp();
+		return sumFeePayOrderByMonthGrp;
+	}
+	
+	public void getPublicityLawByPage() {
+		//PublicityLaw
 	}
 }

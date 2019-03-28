@@ -1,5 +1,6 @@
 package com.law.service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -125,6 +126,8 @@ public class LawService {
 			if (OrderStatusEnum.CUSTOMER_ADD_MARKET_DATA.getCode().equals(lawOrder.getStatus())) {
 				lawOrder.setStatus(OrderStatusEnum.CUSTOMER_ADD_MARKET_DATA.getCode());
 			}
+		}else {
+			lawOrder.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		}
 		lawOrder = lawOrderRepository.saveAndFlush(lawOrder);
 
@@ -544,5 +547,10 @@ public class LawService {
 		order.setRefuseReason(lawOrder.getRefuseReason());
 		return saveLawOrder(order);
 
+	}
+	
+	
+	public BigDecimal countInvolvingMoney() {
+		return lawOrderRepository.countInvolvingMoney();
 	}
 }

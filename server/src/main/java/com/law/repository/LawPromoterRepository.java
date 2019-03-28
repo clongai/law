@@ -1,10 +1,11 @@
 package com.law.repository;
 
-import com.law.model.LawPromoter;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.List;
+import com.law.model.LawPromoter;
 
 /**
  * @Auther: nonghz
@@ -17,6 +18,7 @@ public interface LawPromoterRepository extends JpaRepository<LawPromoter, Intege
     public Integer countByParentPromoterIdAndStatus(int promoterId, String status);
 
     public List<LawPromoter> findAllByStatus(String status);
+    public List<LawPromoter> findAllByPromoterIdIn(List<Integer> ids);
 
     public List<LawPromoter> findAllByParentPromoterId(int parentPromoterId);
 
@@ -25,4 +27,8 @@ public interface LawPromoterRepository extends JpaRepository<LawPromoter, Intege
 	public LawPromoter findByPromoterId(int parentPromoterId);
 
 	public LawPromoter findByOpenId(String openId);
+
+	public long countByStatus(String status);
+	
+	
 }

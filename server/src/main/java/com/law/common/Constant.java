@@ -10,5 +10,8 @@ public class Constant {
 	public static final Integer WX_GET = 1;
 	public static final Integer WX_PUSH = 2;
 	
+	public static final Integer PAY_OK = 1;//表示微信支付成功
+	
+	
 	
 }
