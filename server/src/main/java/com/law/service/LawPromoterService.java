@@ -86,21 +86,7 @@ public class LawPromoterService {
 		}, PageRequest.of(page,pageSize));
 	}
 	
-	public void getPublicityLawByPage(int page,int pageSize) {
-		Page<LawPromoter> lawPromoterList = findAll(page, pageSize);
-		List<PublicityLaw> data = new ArrayList<>();
-		if(lawPromoterList!=null) {
-			List<LawPromoter> content = lawPromoterList.getContent();
-			if(ListUtil.isNotBlank(content)) {
-				content.stream().forEach(t->{
-					PublicityLaw pl = new PublicityLaw();
-					pl.setName(t.getPromoterName());
-					pl.setPhone(t.getPromoterTel());
-				});
-				
-			}
-		}
-	}
+	
 	
 	
 	public void findAllBySql() {

@@ -11,4 +11,6 @@ public interface SysUserRepository extends JpaRepository<SysUser,Integer> {
 
 
   public List<SysUser> getAllByServiceLevelLike(String serviceLevel);
+  
+  public SysUser findTop1ByUserName(String name);
 }

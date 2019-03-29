@@ -1,8 +1,8 @@
 //app.js
 App({
   globalData: {
-    //url: 'http://127.0.0.1:8082/',
-    url: 'https://law.loadpeople.com/'
+    url: 'http://127.0.0.1:8082/',
+    //url: 'https://law.loadpeople.com/'
   }, 
   onLaunch: function () {
   },

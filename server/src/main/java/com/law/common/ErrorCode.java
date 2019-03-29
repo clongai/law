@@ -9,7 +9,8 @@ public enum ErrorCode {
 	, AUTH_FAIL("0003", "认证失败"),
 	PARAM_NULL("0004", "参数为空"),
 	WORK_NO_NOT_EXIST("0005", "工号信息不存在"),
-	DATA_TIMEOUT("0006", "工号信息不存在");
+	WORK_EXIST("0007", "用户名已存在"),
+	DATA_TIMEOUT("0006", "请求超时");
 
 	private String status;
 	private String message;

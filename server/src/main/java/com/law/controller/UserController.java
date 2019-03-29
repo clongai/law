@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.law.common.AjaxResult;
@@ -31,16 +30,17 @@ public class UserController {
 	@PostMapping("/register")
 	public AjaxResult register(@RequestBody SysUser sysUser) {
 		System.err.println(sysUser);
-		if (sysUser == null || StringUtils.isEmpty(sysUser.getUserName()) || StringUtils.isEmpty(sysUser.getUserPwd()) || StringUtils.isEmpty(sysUser.getServiceLevel()) || StringUtils.isEmpty(sysUser.getOrginazation() + "")) {
+		if (sysUser == null || StringUtils.isEmpty(sysUser.getUserName()) || StringUtils.isEmpty(sysUser.getUserPwd())) {
 			return AjaxResult.fail(ErrorCode.PARAM_NULL);
 		}
 		sysUser.setFunction(1);
+		//判断账号是否重复
+		SysUser findTop1ByUserName = userService.findTop1ByUserName(sysUser.getUserName());
+		if(findTop1ByUserName!=null) {
+			return AjaxResult.fail(ErrorCode.WORK_EXIST);
+		}
 		SysUser user = userService.save(sysUser);
 		return AjaxResult.success(user);
 	}
 
-	@RequestMapping("/updateReportData")
-	public void test() {
-		promoterReportService.updateReportData();
-	}
 }

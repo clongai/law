@@ -12,6 +12,9 @@ public class Constant {
 	
 	public static final Integer PAY_OK = 1;//表示微信支付成功
 	
+	public static final Integer LAW_PROMOTER_STATE_OK = 1; 
+	public static final Integer LAW_PROMOTER_STATE_STOP = 0; 
+	
 	
 	
 }

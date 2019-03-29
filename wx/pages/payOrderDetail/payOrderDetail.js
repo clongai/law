@@ -182,7 +182,7 @@ Page({
     })
   },
   swiperChange: function (e) {
-    
+    debugger;
     var obj = {
       selectedPrice: this.data.selectedPrice,
       payType: this.data.payType,

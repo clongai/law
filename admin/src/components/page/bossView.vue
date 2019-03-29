@@ -147,7 +147,7 @@
                         </el-pagination>
                     </div>
                     <div class="footer-button">
-                        <el-button type="warning" size="small" @click="stopBusiClick">暂停业务</el-button>
+                        <el-button type="warning" size="small" @click="stopBusiClick">{{handleBusiMark}}业务</el-button>
                     </div>
                     <!--暂停业务提示框-->
                     <el-dialog
@@ -156,12 +156,12 @@
                         width="30%"
                         center>
                         <slot name="title">
-                            <div class="dialog-title-slot confirm-title">确定停止{{currentRow !== null ? currentRow.name :
+                            <div class="dialog-title-slot confirm-title">确定{{handleBusiMark}}{{currentRow !== null ? currentRow.name :
                                 ''}}的业务吗？
                             </div>
                         </slot>
                         <span slot="footer" class="dialog-footer">
-              <el-button type="warning" size="small" @click="stopDialogVisible = false">确 定</el-button>
+              <el-button type="warning" size="small" @click="stopBusiSure">确 定</el-button>
               <el-button type="waiting" size="small" @click="stopDialogVisible = false">取 消</el-button>
             </span>
                     </el-dialog>
@@ -204,7 +204,11 @@
                 filterName: '',
                 superiorName: '',
                 statusMap: {
-                    0: '正常',
+                    1: '正常',
+                    0: '暂停'
+                },
+                handleStatusMap: {
+                    0: '恢复',
                     1: '暂停'
                 },
                 multipleSelection: [],
@@ -216,7 +220,8 @@
                 totalData: [],
                 searchResultData: [],
                 tableRadio: '',
-                currentRow: null
+                currentRow: null,
+                handleBusiMark:"暂停"
             }
         },
         methods: {
@@ -224,7 +229,6 @@
                 this.$axios.post('/api/getStatisticsData',{
                     type: 0
                 }).then((res) =>{ 
-                    //debugger;
                     this.totalPeople=res.data.totalPeople;
                     this.involvedNum = res.data.involvedNum;
                 })
@@ -232,101 +236,53 @@
             handleSelectionChange(val) {
                 this.currentRow = val;
                 this.tableRadio = val.id;
+                this.handleBusiMark = this.handleStatusMap[val.status];
             },
             getCurrentRow(val) {
 
             },
             paginationClick(page) {
                 this.pageOpt.nowPage = page;
-                this.searchResultData = this.totalData.slice((this.pageOpt.nowPage - 1) * this.pageOpt.pageSize, this.pageOpt.nowPage * this.pageOpt.pageSize)
+                 this.getPublicityLawByPage(--page,5);
             },
             stopBusiClick() {
                 this.stopDialogVisible = true;
             },
-            searchBtnClick() {
-                this.totalData = [
-                    {
-                        id: 1,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 0
-                    }, {
-                        id: 2,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 0
-                    }, {
-                        id: 3,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 0
-                    }, {
-                        id: 4,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 0
-                    }, {
-                        id: 5,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 1
-                    }, {
-                        id: 6,
-                        rank: 1,
-                        name: '王小虎',
-                        employeeId: "C202",
-                        phone: 13811111111,
-                        degree: 'C',
-                        superiorName: '刘全',
-                        subordinateNum: '3',
-                        orderNum: '201',
-                        income: '2000',
-                        complianceRate: '95%',
-                        status: 1
+            stopBusiSure(){
+                this.$axios.post('/api/stopBusiSure',{
+                    id: this.tableRadio
+                }).then((res) =>{ 
+                    console.log(res);
+                    if(res.data.status==1&&res.data.data){
+                         this.stopDialogVisible = false;
+                         this.getPublicityLawByPage(this.pageOpt.nowPage-1,5);
+                        this.handleBusiMark = this.handleStatusMap[this.currentRow.status==0?1:0];
                     }
-                ];
-                this.pageOpt.totalPage = this.totalData.length
-                this.searchResultData = this.totalData.slice((this.pageOpt.nowPage - 1) * this.pageOpt.pageSize, this.pageOpt.nowPage * this.pageOpt.pageSize)
+           
+                })
+            },
+            searchBtnClick() {
+                this.getPublicityLawByPage(0,5);
+                //this.searchResultData = this.totalData.slice((this.pageOpt.nowPage - 1) * this.pageOpt.pageSize, this.pageOpt.nowPage * this.pageOpt.pageSize)
+            },
+            getPublicityLawByPage(page,pageSize){//分页获取报表数据
+            
+                this.$axios.post('/api/getPublicityLawByPage',{
+                    page: page,
+                    pageSize:pageSize,
+                    name:this.filterName,
+                    superiorName:this.superiorName,
+                    startDate:this.date[0],
+                    endDate:this.date[1]
+                }).then((res) =>{ 
+                    console.log(res);
+                    if(res.data.status==1){
+                        this.totalData = res.data.data.content;
+                        this.pageOpt.totalPage = res.data.data.totalElements;
+                        this.searchResultData = res.data.data.content;
+                    }
+           
+                })
             }
         }
     }

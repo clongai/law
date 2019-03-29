@@ -44,6 +44,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -272,7 +273,8 @@ public class WxController {
 		unifiedOrderMap.put("out_trade_no", out_trade_no);//商户订单号
 		unifiedOrderMap.put("total_fee", "1");//订单总金额，单位为分
 		unifiedOrderMap.put("spbill_create_ip", spbillCreateIp);//服务器ip
-		unifiedOrderMap.put("terms_type", termsType);//服务器ip
+		if(!StringUtils.isEmpty(termsType))
+		unifiedOrderMap.put("terms_type", termsType);
 		unifiedOrderMap.put("notify_url", "https://law.loadpeople.com/wxpayCallback");//支付成功回调页面
 		Map<String, String> resMap = lawService.unifiedOrder(unifiedOrderMap);
 		String prepayId = "prepay_id=" + resMap.get("prepay_id");

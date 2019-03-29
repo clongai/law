@@ -323,7 +323,7 @@
             <el-row v-if="(order.status == '2' ||order.status == '15' )&& orginazation == '2'" type="flex" justify="space-around">
                 <el-button type="warning" @click="lawWorkAccept">接受</el-button>
                 <el-button type="danger" @click="refuse">拒绝</el-button>
-                <el-button type="danger" @click="pass2expert">专转家团队</el-button>
+                <!-- <el-button type="danger" @click="pass2expert">专转家团队</el-button> -->
             </el-row>
             
             <!--市场部人员进行电话预约操作按钮-->
@@ -490,12 +490,12 @@
                 <el-button type="primary" @click="saveRefuse">确 定</el-button>
             </span>
         </el-dialog>
-        <el-dialog title="确认转交给专家团队" :visible.sync="pass2expertVisible" width="50%">
+        <!-- <el-dialog title="确认转交给专家团队" :visible.sync="pass2expertVisible" width="50%">
             <span slot="footer" class="dialog-footer">
                 <el-button @click="pass2expertVisible = false">取 消</el-button>
                 <el-button type="primary" @click="savePass">确 定</el-button>
             </span>
-        </el-dialog>
+        </el-dialog> -->
 
 
         <el-dialog title="请补充面谈信息" :visible.sync="lawWorkAcceptVisible"  width="50%">

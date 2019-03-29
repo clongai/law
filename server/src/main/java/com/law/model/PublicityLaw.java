@@ -1,5 +1,7 @@
 package com.law.model;
 
+import java.math.BigDecimal;
+
 public class PublicityLaw {
 
 	private Integer id;
@@ -11,7 +13,7 @@ public class PublicityLaw {
 	private String superiorName;//上级姓名
 	private Integer subordinateNum;//下级人数
 	private Integer orderNum;//成单数
-	private String income;//收入
+	private BigDecimal income;//收入
 	private String complianceRate;//达标率
 	private Integer status;//状态
 
@@ -87,11 +89,11 @@ public class PublicityLaw {
 		this.orderNum = orderNum;
 	}
 
-	public String getIncome() {
+	public BigDecimal getIncome() {
 		return income;
 	}
 
-	public void setIncome(String income) {
+	public void setIncome(BigDecimal income) {
 		this.income = income;
 	}
 

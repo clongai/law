@@ -36,7 +36,8 @@
                               @keyup.enter.native="passwordSure('ruleForm')"></el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
+                    <el-button class="login-btn-register" type="primary" @click="submitForm('ruleForm')">注册</el-button>
+                    <el-button class="login-btn-login" type="text" @click="toLogin()">登录</el-button>
                 </div>
                 <!--<p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>-->
             </el-form>
@@ -49,7 +50,7 @@
         data: function () {
             return {
                 status: '1',
-                level: '2',
+                level: '',
                 isLevelShow: false,
                 levelOptions:[{
                             value: '2',
@@ -121,8 +122,10 @@
             selectDept(){
                 
                 if(this.status==2){
+                    this.level = '2';
                     this.isLevelShow = true;
                 }else{
+                    this.level = '';
                     this.isLevelShow = false;
                 }
             },
@@ -131,6 +134,9 @@
                     alert("两次密码输入不一致，请重新输入！");
                     return;
                 }
+            },
+            toLogin(){
+                this.$router.push('/login/');
             }
         }
     }
@@ -167,11 +173,18 @@
     }
 
     .login-btn {
+        padding-left: 10%;
         text-align: center;
     }
 
-    .login-btn button {
-        width: 100%;
+    .login-btn-register {
+        
+        width: 70%;
+        height: 36px;
+        float: left;
+    }
+    .login-btn-login {
+        width: 10%;
         height: 36px;
     }
 </style>

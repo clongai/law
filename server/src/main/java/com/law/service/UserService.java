@@ -14,6 +14,9 @@ public class UserService {
   public SysUser getSysUser(String userName,String userPwd){
     return sysUserRepository.findOneByUserNameAndUserPwd(userName,userPwd);
   }
+  public SysUser findTop1ByUserName(String userName){
+	  return sysUserRepository.findTop1ByUserName(userName);
+  }
   
   public SysUser save(SysUser user) {
 	  return sysUserRepository.save(user);

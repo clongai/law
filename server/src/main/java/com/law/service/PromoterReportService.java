@@ -1,9 +1,13 @@
 package com.law.service;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -12,21 +16,25 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.law.common.Constant;
 import com.law.entity.PromoterReport;
 import com.law.model.LawPromoter;
 import com.law.model.PromoterParam;
+import com.law.model.PublicityLaw;
 import com.law.repository.PromoterReportRepository;
 import com.law.util.ListUtil;
 
@@ -101,7 +109,7 @@ public class PromoterReportService {
 			});
 			String inVal = param.stream().collect(Collectors.joining(","));
 			sqlSb.append(inVal);
-			promoter.setSubordinateNum(openIdS.size()-1);//不包含自己，所以-1
+			promoter.setSubordinateNum(openIdS.size() - 1);//不包含自己，所以-1
 		}
 		sqlSb.append("   ) ");
 
@@ -171,5 +179,47 @@ public class PromoterReportService {
 				return cb.and(list.toArray(p));
 			}
 		}, PageRequest.of(page, pageSize, Sort.by(Direction.DESC, PromoterReport.INCOME)));
+	}
+
+	public Page<PublicityLaw> getPublicityLawByPage(int page, int pageSize, PromoterParam param) {
+
+		Page<PromoterReport> promoterReportPage = findAll(page, pageSize, param);
+		List<PublicityLaw> data = new ArrayList<>();
+		if (promoterReportPage != null) {
+			List<PromoterReport> content = promoterReportPage.getContent();
+			if (ListUtil.isNotBlank(content)) {
+				AtomicInteger index = new AtomicInteger(1);
+				content.stream().forEach(t -> {
+					PublicityLaw pl = new PublicityLaw();
+					pl.setRank(page * pageSize + index.getAndIncrement());
+					pl.setName(t.getPromoterName());
+					pl.setPhone(t.getPromoterTel());
+					pl.setId(t.getPromoterId());
+					pl.setSubordinateNum(t.getSubordinateNum());
+					pl.setSuperiorName(t.getSuperiorName());
+					pl.setIncome(Optional.ofNullable(t.getIncome()).orElse(BigDecimal.valueOf(0)));
+					pl.setOrderNum(Optional.ofNullable(t.getOrderNum()).orElse(BigInteger.valueOf(0)).intValue());
+					pl.setStatus(t.getState());
+					data.add(pl);
+				});
+
+			}
+		}
+
+		Page<PublicityLaw> returnPage = new PageImpl<>(data, PageRequest.of(page, pageSize), promoterReportPage == null ? 0 : promoterReportPage.getTotalElements());
+
+		return returnPage;
+	}
+
+	@Transactional
+	public boolean stopBusiSure(int id) {
+		LawPromoter lawPromoter = lawPromoterService.findByPromoterId(id);
+		lawPromoter.setState(lawPromoter.getState().equals(Constant.LAW_PROMOTER_STATE_STOP)?Constant.LAW_PROMOTER_STATE_OK:Constant.LAW_PROMOTER_STATE_STOP);
+		Optional<PromoterReport> prOptional = promoterReportRepository.findById(id);
+		PromoterReport promoterReport = prOptional.get();
+		promoterReport.setState(promoterReport.getState().equals(Constant.LAW_PROMOTER_STATE_STOP)?Constant.LAW_PROMOTER_STATE_OK:Constant.LAW_PROMOTER_STATE_STOP);
+		lawPromoterService.save(lawPromoter);
+		promoterReportRepository.save(promoterReport);
+		return true;
 	}
 }

@@ -603,7 +603,4 @@ public class LawController {
 		return sumFeePayOrderByMonthGrp;
 	}
 	
-	public void getPublicityLawByPage() {
-		//PublicityLaw
-	}
 }

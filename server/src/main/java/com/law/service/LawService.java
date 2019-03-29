@@ -254,7 +254,7 @@ public class LawService {
 				Predicate[] p = new Predicate[list.size()];
 				return criteriaBuilder.and(list.toArray(p));
 			}
-		}, new PageRequest(page, pageSize, Sort.Direction.DESC, "orderId"));
+		}, PageRequest.of(page, pageSize, Sort.Direction.DESC, "orderId"));
 	}
 
 	public List<LawServiceEntity> queryLawService() {
