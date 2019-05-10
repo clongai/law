@@ -20,7 +20,7 @@
                         </el-menu-item>
                     </template>
                 </template>
-                <template v-if="orginazation === '2'">
+                <template v-if="orginazation === '2' && userName=='zhangqian'">
                 <template v-for="orderHandle in chatHandles">
                     <template v-if="orderHandle.subs">
                         <el-submenu :index="orderHandle.index" :key="orderHandle.index">
@@ -72,6 +72,7 @@
                 collapse: false,
                 func: '',
                 orginazation:'',
+                userName:'',
                 orderHandles: [
                     {
                         icon: 'el-icon-setting',
@@ -108,6 +109,7 @@
             bus.$on('collapse', msg => {
                 this.collapse = msg;
             })
+            this.userName = localStorage.getItem('ms_username');
             this.orginazation = localStorage.getItem('ms_userOrginazation')
         }
     }

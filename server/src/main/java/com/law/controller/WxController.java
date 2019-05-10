@@ -336,6 +336,10 @@ public class WxController {
 		JSONObject json = JSONObject.parseObject(data);
 		String openId = json.getString("openId");
 		String parentOpenId = json.getString("parentOpenId");
+		if(StringUtils.isEmpty(parentOpenId)) {
+			parentOpenId = "oBy6H5HMzrBQNvo8tsKj8MwxpRDU";
+		}
+		
 		return lawService.bindPromoter(openId, parentOpenId);
 	}
 

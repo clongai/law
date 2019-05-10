@@ -28,7 +28,7 @@
   },
   "tabBar": {
     "backgroundColor": "#ffffff",
-    "borderStyle": "#000000",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/chooseType/chooseType",
@@ -49,5 +49,6 @@
         "selectedIconPath": "images/index/bot3.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

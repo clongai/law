@@ -37,7 +37,7 @@
                 </el-form-item>
                 <div class="login-btn">
                     <el-button class="login-btn-register" type="primary" @click="submitForm('ruleForm')">注册</el-button>
-                    <el-button class="login-btn-login" type="text" @click="toLogin()">登录</el-button>
+                    <el-button class="login-btn-login" type="text" @click="toLogin('ruleForm')">登录</el-button>
                 </div>
                 <!--<p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码随便填。</p>-->
             </el-form>
@@ -136,7 +136,8 @@
                 }
             },
             toLogin(){
-                this.$router.push('/login/');
+                const that = this;
+                that.$router.push('/login');
             }
         }
     }

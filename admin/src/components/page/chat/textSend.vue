@@ -12,7 +12,7 @@ export default {
     
     data () {
         return {
-            content: 'ceshi',
+            content: '',
             count: 0
         };
     },

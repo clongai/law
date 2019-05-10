@@ -383,6 +383,7 @@ public class LawService {
 		promoter.setParentPromoterId(parentPromoter.getPromoterId());
 		promoter.setOpenId(openId);
 		promoter.setStatus("U");
+		promoter.setState(1);
 		promoter.setCreateTime(new Date(System.currentTimeMillis()));
 		lawPromoterRepository.save(promoter);
 		map.put("status", "new");
