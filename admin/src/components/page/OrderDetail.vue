@@ -232,25 +232,31 @@
                 </el-row>
                  <el-row :gutter="20">
                     <el-col :span="6">
-                        <div class="grid-content">提供法律文书，当事人自行处理报价</div>
+                        <div v-if="order.termsType == 'A'" class="grid-content" style="color:blue;" >提供法律文书，当事人自行处理报价</div>
+                        <div v-else class="grid-content">提供法律文书，当事人自行处理报价</div>
                     </el-col>
                     <el-col :span="6">
-                        <div class="grid-content">提供法律文书，全程跟踪指导报价</div>
+                        <div v-if="order.termsType == 'B'" class="grid-content" style="color:blue;">提供法律文书，全程跟踪指导报价</div>
+                        <div v-else class="grid-content">提供法律文书，全程跟踪指导报价</div>
                     </el-col>
                     <el-col :span="6">
-                        <div class="grid-content">与山东聚青签署委托代理协议报价</div>
+                        <div v-if="order.termsType == 'C'" class="grid-content" style="color:blue;" >与山东聚青签署委托代理协议报价</div>
+                        <div v-else class="grid-content">与山东聚青签署委托代理协议报价</div>
                     </el-col>
                     
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="6">
-                        <div class="grid-content bg-purple">&nbsp;{{order.quoteA}}</div>
+                        <div v-if="order.termsType == 'A'" style="color:blue;" class="grid-content bg-purple">&nbsp;{{order.quoteA}}</div>
+                        <div v-else class="grid-content bg-purple">&nbsp;{{order.quoteA}}</div>
                     </el-col>
                     <el-col :span="6">
-                        <div class="grid-content bg-purple">&nbsp;{{order.quoteB}}</div>
+                        <div v-if="order.termsType == 'B'" style="color:blue;" class="grid-content bg-purple">&nbsp;{{order.quoteB}}</div>
+                        <div v-else class="grid-content bg-purple">&nbsp;{{order.quoteB}}</div>
                     </el-col>
                     <el-col :span="6">
-                        <div class="grid-content bg-purple">&nbsp;{{order.quoteC}}</div>
+                        <div v-if="order.termsType == 'C'" style="color:blue;" class="grid-content bg-purple">&nbsp;{{order.quoteC}}</div>
+                        <div v-else class="grid-content bg-purple">&nbsp;{{order.quoteC}}</div>
                     </el-col>
                     
                 </el-row>

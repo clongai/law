@@ -312,6 +312,7 @@ public class LawService {
 
 	public Map<String, String> unifiedOrder(Map<String, String> map) throws Exception {
 		WXPay wxPay = new WXPay(wxPayConfig, WXPayConstants.SignType.MD5);
+		System.err.println(JSONObject.toJSON(wxPay));
 		return wxPay.unifiedOrder(map);
 	}
 

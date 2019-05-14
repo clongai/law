@@ -274,9 +274,12 @@ public class WxController {
 		unifiedOrderMap.put("total_fee", "1");//订单总金额，单位为分
 		unifiedOrderMap.put("spbill_create_ip", spbillCreateIp);//服务器ip
 		if(!StringUtils.isEmpty(termsType))
-		unifiedOrderMap.put("terms_type", termsType);
+		unifiedOrderMap.put("attach", termsType);
 		unifiedOrderMap.put("notify_url", "https://law.loadpeople.com/wxpayCallback");//支付成功回调页面
+		System.err.println(JSONObject.toJSON(unifiedOrderMap));
 		Map<String, String> resMap = lawService.unifiedOrder(unifiedOrderMap);
+		System.err.println(resMap);
+		System.err.println(JSONObject.toJSON(resMap));
 		String prepayId = "prepay_id=" + resMap.get("prepay_id");
 
 		//二次签名
@@ -315,7 +318,8 @@ public class WxController {
 			if (return_code.equals("SUCCESS")) {
 				if (com.github.wxpay.sdk.WXPayUtil.isSignatureValid(xmlString, key)) {
 					String out_trade_no = map.get("out_trade_no");
-					String terms_type = map.get("terms_type");
+					//String terms_type = map.get("terms_type");
+					String terms_type = map.get("attach");
 					log.info("通知微信收到支付结果:" + return_code);
 					lawService.deal4PaySuccess(out_trade_no, idWorker.nextId(), terms_type);
 					log.info("通知微信收到支付结果后，订单状态更新成功！");

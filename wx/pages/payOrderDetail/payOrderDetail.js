@@ -279,11 +279,13 @@ Page({
       signType: 'MD5',
       paySign: val.paySign,
       success: function (res) {
-
+        console.log(res)
       },
       fail: function (res) {
+        console.log(res)
       },
       complete: function (res) {
+        console.log(res)
         if (res.errMsg == 'requestPayment:ok') {
           wx.switchTab({
             url: '../index/index',
