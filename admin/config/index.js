@@ -7,11 +7,11 @@ const path = require('path')
 module.exports = {
   dev: {
     // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    //assetsSubDirectory: 'static',
+    //assetsPublicPath: '/',
     proxyTable: {
       '/api/*':{
-          target:'http://127.0.0.1:8082',
+          target:'http://127.0.0.1:18001',
           changeOrigin:true,
           pathRewrite:{
               '/api':''
